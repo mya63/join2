@@ -1,0 +1,31 @@
+:root{
+  --header-h-desktop: 96px;
+  --header-h-mobile: 80px;
+  --sidenav-w: 232px;
+}
+
+/* Desktop */
+.sidenav{
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--sidenav-w);
+  z-index: 2000;
+}
+.main{
+  min-height: 100dvh;
+  background: #F6F7F8;
+  padding-top: var(--header-h-desktop);
+  padding-left: var(--sidenav-w);
+}
+
+/* @media (max-width: 950px){
+  .sidenav{ display: none; }
+  .main{
+    padding-top: var(--header-h-mobile);
+    padding-left: 0;
+    padding-bottom: 88px; 
+    justify-content: center;
+  }
+  .main > *{ width: 100%; max-width: 428px; }
+}
+ */

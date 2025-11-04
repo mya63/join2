@@ -1,0 +1,54 @@
+/* Host und Tag selektieren (wegen encapsulation: none ist das robust) */
+figma-bottom-nav,
+figma-bottom-nav:host {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80px;
+  z-index: 4000;
+  display: none; /* Desktop aus */
+}
+
+@media (max-width: 1350px) {
+  figma-bottom-nav,
+  figma-bottom-nav:host {
+    display: block;
+  }
+}
+
+/* Leisteninhalt */
+figma-bottom-nav .bottom-nav {
+  height: 100%;
+  background: #2a3647;
+  color: #cdcdcd;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+figma-bottom-nav .item {
+  z-index: 4000;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: 12px/1.2 Inter, system-ui, Arial, sans-serif;
+  color: inherit;
+  text-decoration: none;
+
+  background-color: #2a3647;
+}
+
+figma-bottom-nav .item img {
+  width: 90px;
+  height: 90px;
+  display: block;
+}
+figma-bottom-nav .item--active {
+  color: #29abe2;
+}
