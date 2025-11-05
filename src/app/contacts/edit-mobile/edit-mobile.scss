@@ -1,4 +1,4 @@
-$--panel-dark-correction: 25px;
+$--panel-dark-correction: 33px;
 
 /* ===== Backdrop: fixed, volle Fläche, zentriert ===== */
 .mobile-edit-backdrop {
@@ -225,7 +225,7 @@ $--panel-dark-correction: 25px;
 .buttons {
   position: absolute;
   left: 50%;
-  top: 647px + $--panel-dark-correction;
+  top: 647px + 66px - $--panel-dark-correction;
   transform: translateX(-50%);
   display: flex;
   gap: 20px;
