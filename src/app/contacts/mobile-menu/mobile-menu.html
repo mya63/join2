@@ -1,7 +1,7 @@
 @if (inline) {
 <!-- Standard: Vollbild-Overlay -->
 <div class="overlay" (click)="onBackdropClick($event)">
-  <div class="panel">
+  <div class="panel" [class.closing]="isClosing()" (animationend)="onAnimationEnd()">
     <button class="row" (click)="onEdit()">
       <img src="assets/img/contacts/mobile-menu/edit-icon-only.svg" alt="Edit icon">
       <span>Edit</span>
@@ -14,7 +14,7 @@
 </div>
 } @else {
 <!-- Inline: nur das Panel (kein Backdrop), Parent positioniert es -->
-<div class="panel">
+<div class="panel" [class.closing]="isClosing()" (animationend)="onAnimationEnd()">
   <button class="row" (click)="onEdit()">
     <img src="assets/img/contacts/mobile-menu/edit-icon-only.svg" alt="Edit icon">
     <span>Edit</span>

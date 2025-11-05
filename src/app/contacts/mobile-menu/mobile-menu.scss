@@ -39,6 +39,10 @@
   animation-duration: 300ms;
   animation: slideIn 0.30s ease !important;
 
+  &.closing {
+    animation: slideOut 0.30s ease !important;
+  }
+
 }
 
 @keyframes slideIn {
@@ -48,6 +52,16 @@
 
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
   }
 }
 

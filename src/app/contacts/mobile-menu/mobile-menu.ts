@@ -1,5 +1,5 @@
 // src/app/contacts/contact-edit-mobile-menu/contact-edit-mobile-menu.ts
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FbService } from '../../services/fb-service';
 
@@ -13,6 +13,7 @@ import { FbService } from '../../services/fb-service';
 export class MobileMenu {
   constructor(public fbService: FbService) { }
 
+  isClosing = signal(false);
 
   @Input() contactId!: string;
   @Input() inline = false;
@@ -23,16 +24,28 @@ export class MobileMenu {
 
   onEdit(): void {
     this.edit.emit(this.contactId ?? '');
+    this.startClosingAnimation();
   }
 
   onDelete(): void {
     this.delete.emit(this.contactId ?? '');
     this.fbService.contactlistHidden = false;
+    this.startClosingAnimation();
   }
 
   onBackdropClick(ev: MouseEvent): void {
     const target = ev.target as HTMLElement;
     if (target.classList.contains('overlay')) {
+      this.startClosingAnimation();
+    }
+  }
+
+  startClosingAnimation(): void {
+    this.isClosing.set(true);
+  }
+
+  onAnimationEnd(): void {
+    if (this.isClosing()) {
       this.close.emit();
     }
   }
