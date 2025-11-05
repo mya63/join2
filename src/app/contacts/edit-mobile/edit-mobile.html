@@ -26,7 +26,7 @@
             required 
             #nameInput="ngModel"
             [class.invalid]="nameInput.invalid && nameInput.touched" />
-          <span class="icon i-person"><img src="assets/img/person-icon.svg" alt="Person Icon" /></span>
+          <span class="icon i-person"><img src="assets/img/contacts/edit-mobile/person-icon-only.svg" alt="Person Icon" /></span>
         </label>
         <div class="validation-message">
           @if (nameInput.invalid && nameInput.touched) {
@@ -49,7 +49,7 @@
             required 
             #surnameInput="ngModel"
             [class.invalid]="surnameInput.invalid && surnameInput.touched" />
-          <span class="icon i-person"><img src="assets/img/person-icon.svg" alt="Person Icon" /></span>
+          <span class="icon i-person"><img src="assets/img/contacts/edit-mobile/person-icon-only.svg" alt="Person Icon" /></span>
         </label>
         <div class="validation-message">
           @if (surnameInput.invalid && surnameInput.touched) {
@@ -73,7 +73,7 @@
             email
             #emailInput="ngModel"
             [class.invalid]="emailInput.invalid && emailInput.touched" />
-          <span class="icon i-mail"><img src="assets/img/mail-icon.svg" alt="Mail Icon" /></span>
+          <span class="icon i-mail"><img src="assets/img/contacts/edit-mobile/mail-icon-only.svg" alt="Mail Icon" /></span>
         </label>
         <div class="validation-message">
           @if (emailInput.invalid && emailInput.touched) {
@@ -97,7 +97,7 @@
             placeholder="Phone" 
             #phoneInput="ngModel"
             [class.invalid]="(phoneInput.invalid && phoneInput.touched) || (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone))" />
-          <span class="icon i-call"><img src="assets/img/call_with_background.svg" alt="Call Icon" /></span>
+          <span class="icon i-call"><img src="assets/img/contacts/edit-mobile/call-icon-only.svg" alt="Call Icon" /></span>
         </label>
         <div class="validation-message">
           @if (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone)) {
@@ -112,13 +112,13 @@
       <button class="btn-delete" type="button" (click)="delContact()">Delete</button>
       <button class="btn-save" type="button" (click)="upContact()" [disabled]="!isFormValid(f)">
         <span>Save</span>
-        <span class="icon-check" > <img src="assets/img/check.svg" alt="Check" /></span>
+        <span class="icon-check" > <img src="assets/img/contacts/edit-mobile/check-icon-only.svg" alt="Check" /></span>
       </button>
     </div>
 
     <!-- Close icon (unsichtbare Klickfläche wie Figma) -->
     <button class="btn-close" type="button" aria-label="Close" (click)="closeOverlay()">
-      <img src="assets/img/close.png" alt="Close">
+      <img src="assets/img/contacts/edit-mobile/x-vector-white-icon-only.svg" alt="Close">
     </button>
   </div>
 </div>

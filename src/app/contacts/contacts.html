@@ -4,7 +4,7 @@
       <div class="primary-contact-container">
         <button class="primary-contact" (click)="showContactOverlay()">
           <span>Add new contact</span>
-          <img src="assets/components/contacts/add_contact.svg" alt="" />
+          <img src="assets/img/contacts/person_add.svg" alt="Add Person" />
         </button>
       </div>
       <div class="contacts-list" [class.dnone]="getContactlistHidden()">
@@ -36,7 +36,7 @@
   <div class="detail-panel">
     <div class="heading">
       <h1>Contacts</h1>
-      <img src="assets/components/contact-card/heading_blue_line.svg" class="blue-line" alt="" />
+      <img src="assets/img/contacts/heading_blue_line.svg" class="blue-line" alt="" />
       <p>Better with a team</p>
     </div>
   </div>
@@ -51,7 +51,7 @@
             <h1>Contacts</h1>
             <p>Better with a team</p>
           </div>
-          <img src="assets/components/contact-card/heading_blue_line.svg" class="blue-line" alt="" />
+          <img src="assets/img/contacts/heading_blue_line.svg" class="blue-line" alt="" />
         </div>
 
 
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-      <img class="go-back" src="assets/img/arrow-left-line.svg" alt="go back" (click)="closeMobileContact()"
+      <img class="go-back" src="assets/img/contacts/arrow-left-line.svg" alt="go back" (click)="closeMobileContact()"
         [class.dnone]="!getContactlistHidden()" />
     </div>
   <div class="contact-edit-activation">
