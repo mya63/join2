@@ -2,15 +2,13 @@
   <div class="add-container" [class.sliding-out]="isClosing">
     <!-- Close Button (Top Right) -->
     <button class="close-btn" (click)="closeOverlay()" type="button" aria-label="Close">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </svg>
+      <img src="assets/img/contacts/add-desktop/x-vector-icon-only.svg" alt="Join Logo">
     </button>
 
     <!-- Left Side: Title Section -->
     <div class="left-section">
       <div class="logo" aria-hidden="true">
-        <img src="assets/img/person-large-add.svg" alt="">
+        <img src="assets/img/contacts/add-desktop/join-bright.svg" alt="">
       </div>
       <h1>Add contact</h1>
       <p class="subtitle">Tasks are better with a team!</p>
@@ -21,7 +19,7 @@
     <div class="right-section">
       <!-- Avatar Circle -->
       <div class="avatar-circle" aria-hidden="true">
-        <img src="assets/img/person-add.svg" alt="Person icon">
+        <img src="assets/img/contacts/add-desktop/person-large-add.svg" alt="Person icon">
       </div>
 
       <!-- Form -->
@@ -31,7 +29,7 @@
           <div class="input-wrapper">
             <input type="text" id="name" [(ngModel)]="contact.name" name="name" placeholder="Name" required
               autocomplete="name" #nameInput="ngModel" [class.invalid]="nameInput.invalid && nameInput.touched">
-            <img src="assets/img/person-icon-only.svg" alt="Name Icon" class="input-icon">
+            <img src="assets/img/contacts/add-desktop/person-icon-only.svg" alt="Name Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -52,7 +50,7 @@
             <input type="text" id="surname" [(ngModel)]="contact.surname" name="surname" placeholder="Surname" required
               autocomplete="family-name" #surnameInput="ngModel"
               [class.invalid]="surnameInput.invalid && surnameInput.touched">
-            <img src="assets/img/person-icon-only.svg" alt="Surname Icon" class="input-icon">
+            <img src="assets/img/contacts/add-desktop/person-icon-only.svg" alt="Surname Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -72,7 +70,7 @@
           <div class="input-wrapper">
             <input type="email" id="email" [(ngModel)]="contact.email" name="email" placeholder="Email" required email
               autocomplete="email" #emailInput="ngModel" [class.invalid]="emailInput.invalid && emailInput.touched">
-            <img src="assets/img/mail-icon-only.svg" alt="Email Icon" class="input-icon">
+            <img src="assets/img/contacts/add-desktop/mail-icon-only.svg" alt="Email Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -95,7 +93,7 @@
             <input type="tel" id="phone" [(ngModel)]="contact.phone" name="phone" placeholder="Phone" autocomplete="tel"
               #phoneInput="ngModel"
               [class.invalid]="(phoneInput.invalid && phoneInput.touched) || (phoneInput.touched && hasInvalidPhoneFormat(contact.phone))">
-            <img src="assets/img/call-icon-only.svg" alt="Phone Icon" class="input-icon">
+            <img src="assets/img/contacts/add-desktop/call-icon-only.svg" alt="Phone Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -115,7 +113,7 @@
 
           <button type="submit" class="btn-create" [disabled]="!isFormValid(f)">
             Create contact
-            <img src="assets/img/check-icon-only.svg" alt="Create Icon" class="input-icon">
+            <img src="assets/img/contacts/add-desktop/check-icon-only.svg" alt="Create Icon" class="input-icon">
           </button>
         </div>
       </form>

@@ -4,20 +4,7 @@
     <!-- Left Side - Frame 194 (Dark Blue) -->
     <div class="left-side">
       <div class="logo">
-        <svg width="54" height="67" viewBox="0 0 54 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M38.6416 0H26.6953V13.8957H38.6416V0Z" fill="white" />
-          <path
-            d="M26.6953 25.197H38.6416V44.7947C38.6962 49.5105 37.3687 54.1362 34.828 58.0839C32.3192 61.9194 27.4764 66.4829 18.5167 66.4829C8.75753 66.4829 3.06927 61.8167 0 59.2597L7.53534 49.8621C10.5311 52.3352 13.4166 54.3696 18.5627 54.3696C22.459 54.3696 24.012 52.7645 24.9218 51.3646C26.1585 49.4203 26.7983 47.1465 26.7596 44.8321L26.6953 25.197Z"
-            fill="white" />
-          <path d="M20.6028 16.4248H8.65649V28.5567H20.6028V16.4248Z" fill="#29ABE2" />
-          <path
-            d="M44.8995 60.7904C44.8995 63.3754 43.6038 64.7659 41.7935 64.7659C39.9832 64.7659 38.7977 63.1141 38.7977 60.9211C38.7977 58.728 40.0199 56.9922 41.8946 56.9922C43.7692 56.9922 44.8995 58.7 44.8995 60.7904ZM40.1853 60.8931C40.1853 62.4516 40.801 63.5994 41.8578 63.5994C42.9146 63.5994 43.5119 62.3862 43.5119 60.7997C43.5119 59.4092 42.9605 58.1027 41.8578 58.1027C40.7551 58.1027 40.1853 59.3626 40.1853 60.8931Z"
-            fill="white" />
-          <path d="M47.2704 57.104V64.6445H45.9471V57.104H47.2704Z" fill="white" />
-          <path
-            d="M48.704 64.6445V57.104H50.1743L51.7549 60.2116C52.1618 61.0242 52.5238 61.8592 52.8392 62.7127C52.7565 61.7795 52.7198 60.7063 52.7198 59.5117V57.104H53.9328V64.6445H52.5635L50.9646 61.4715C50.5412 60.638 50.1639 59.7812 49.8343 58.9051C49.8343 59.8384 49.8986 60.8929 49.8986 62.1901V64.6351L48.704 64.6445Z"
-            fill="white" />
-        </svg>
+        <img src="assets/img/contacts/edit-desktop/join-bright.svg" alt="Join Logo">
       </div>
 
       <div class="title-container">
@@ -30,13 +17,12 @@
     <!-- Right Side - Light Overlay -->
     <div class="right-side">
       <button class="close-btn" (click)="onClose()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18 6L6 18M6 6L18 18" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-        </svg>
+        <img src="assets/img/contacts/edit-desktop/x-vector-icon-only.svg" alt="cancel">
       </button>
 
       <div class="avatar" [style.background]="editedContact.color">
-        <span class="initials">{{ editedContact.name.substring(0, 1).toUpperCase() + editedContact.surname.substring(0, 1).toUpperCase() }}</span>
+        <span class="initials">{{ editedContact.name.substring(0, 1).toUpperCase() + editedContact.surname.substring(0,
+          1).toUpperCase() }}</span>
       </div>
 
       <form class="contact-form" #f="ngForm" novalidate>
@@ -44,15 +30,7 @@
           <div class="input-group">
             <input type="text" [(ngModel)]="editedContact.name" name="name" placeholder="Name" required
               #nameInput="ngModel" [class.invalid]="nameInput.invalid && nameInput.touched" />
-            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z"
-                fill="#2A3647" />
-              <path
-                d="M10 12.5C5.16667 12.5 1.25 14.5833 1.25 17.0833V20H18.75V17.0833C18.75 14.5833 14.8333 12.5 10 12.5Z"
-                fill="#2A3647" />
-            </svg>
+            <img src="assets/img/contacts/edit-desktop/person-icon-only.svg" alt="Name Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -71,15 +49,7 @@
           <div class="input-group">
             <input type="text" [(ngModel)]="editedContact.surname" name="surname" placeholder="Surname" required
               #surnameInput="ngModel" [class.invalid]="surnameInput.invalid && surnameInput.touched" />
-            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z"
-                fill="#2A3647" />
-              <path
-                d="M10 12.5C5.16667 12.5 1.25 14.5833 1.25 17.0833V20H18.75V17.0833C18.75 14.5833 14.8333 12.5 10 12.5Z"
-                fill="#2A3647" />
-            </svg>
+            <img src="assets/img/contacts/edit-desktop/person-icon-only.svg" alt="Surname Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -98,12 +68,7 @@
           <div class="input-group">
             <input type="email" [(ngModel)]="editedContact.email" name="email" placeholder="Email" required email
               #emailInput="ngModel" [class.invalid]="emailInput.invalid && emailInput.touched" />
-            <svg class="input-icon" width="20" height="16" viewBox="0 0 20 16" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M2 0C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0H2ZM2 4L10 9L18 4V14H2V4ZM2 2H18L10 7L2 2Z"
-                fill="#2A3647" />
-            </svg>
+            <img src="assets/img/contacts/edit-desktop/mail-icon-only.svg" alt="Email Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -124,12 +89,7 @@
           <div class="input-group">
             <input type="tel" [(ngModel)]="editedContact.phone" name="phone" placeholder="Phone" #phoneInput="ngModel"
               [class.invalid]="(phoneInput.invalid && phoneInput.touched) || (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone))" />
-            <svg class="input-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M19 14.5C17.25 14.5 15.59 14.17 14.08 13.57C13.87 13.48 13.64 13.5 13.45 13.61L11.21 15.85C8.38 14.42 5.59 11.64 4.15 8.79L6.39 6.55C6.5 6.36 6.52 6.13 6.43 5.92C5.83 4.41 5.5 2.75 5.5 1C5.5 0.45 5.05 0 4.5 0H1C0.45 0 0 0.45 0 1C0 11.93 8.07 20 19 20C19.55 20 20 19.55 20 19V15.5C20 14.95 19.55 14.5 19 14.5Z"
-                fill="#2A3647" />
-            </svg>
+            <img src="assets/img/contacts/edit-desktop/call-icon-only.svg" alt="Phone Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -146,9 +106,7 @@
           </button>
           <button type="button" class="btn-save" (click)="upContact()" [disabled]="!isFormValid(f)">
             Save
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 6L6 11L15 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <img src="assets/img/contacts/edit-desktop/check-icon-only.svg" alt="Save Icon" class="button-icon">
           </button>
         </div>
       </form>

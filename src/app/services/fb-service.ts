@@ -69,7 +69,7 @@ export class FbService {
   }
 
   async addContact(contact: IContact) {
-    await addDoc(this.contactsCollection, { ownerId: this.getCurrentUserId(), date: new Date(), color: this.getRandomColor(), ...contact });
+    await addDoc(this.contactsCollection, { ownerId: this.getCurrentUserId(), date: new Date(), color: this.getRandomColorOld(), ...contact });
   }
 
   async updateContact(id: number, contact: IContact) {
@@ -101,7 +101,7 @@ export class FbService {
   }
 
   getRandomColorOld() {
-    const colors = ['#FF7A00', '#9327FF', '#6E52FF', '#FC71FF', '#FFBB2B', '#1FD7C1', '#FF4646'];
+    const colors = ['#FF7A00', '#9327FF', '#6E52FF', '#FC71FF', '#FFBB2B', '#1FD7C1', '#462F8A', '#FF4646', '#00BEE8', '#FF5EC4', '#3DFF8A'];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     return randomColor;
   }
