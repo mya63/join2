@@ -645,5 +645,16 @@ div.contact-row:active {
   /* FAB-Unterkante + FAB-Höhe + Luft */
   z-index: 4200;
   /* höher als FAB & Bottom-Nav */
+}
 
+@media (max-height: 700px) {
+  .contacts-list .contact-row {
+    padding-top: 0px !important;
+    padding-bottom: 10px !important;
+    height: auto !important;
+  }
+  .letter {
+    padding-top: 0px !important;
+    margin: 0px !important;
+  }
 }

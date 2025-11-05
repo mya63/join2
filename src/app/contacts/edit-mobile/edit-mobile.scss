@@ -345,3 +345,17 @@ $--panel-dark-correction: 33px;
     top: 626px - 8px
   }
 }
+
+@media (max-height: 1000px) {
+  .contact-edit-mobile {
+    scrollbar-width: auto;
+    overflow-y: scroll;
+  }
+
+  .contact-edit-mobile {
+    margin-bottom: 70px;
+    overflow-y: scroll;
+  }
+
+
+}
