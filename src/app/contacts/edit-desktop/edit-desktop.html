@@ -1,36 +1,38 @@
 @if(getShowEditContact()){
-<div class="modal-backdrop" (click)="onClose()">
-  <div class="modal-container" [class.sliding-out]="isClosing" (click)="$event.stopPropagation()">
-    <!-- Left Side - Frame 194 (Dark Blue) -->
-    <div class="left-side">
-      <div class="logo">
-        <img src="assets/img/contacts/edit-desktop/join-bright.svg" alt="Join Logo">
+<div class="overlay" (click)="onOverlayClick($event)">
+  <div class="add-container" [class.sliding-out]="isClosing">
+    <!-- Close Button (Top Right) -->
+    <button class="close-btn" (click)="onClose()" type="button" aria-label="Close">
+      <div class="vorHover">
+      <img src="assets/img/contacts/add-desktop/x-vector-icon-only.svg" alt="Join Logo">
       </div>
+    </button>
 
-      <div class="title-container">
-        <h1 class="title">Edit contact</h1>
-        <!-- Vector 5 - Blue underline -->
-        <div class="title-underline"></div>
+    <!-- Left Side: Title Section -->
+    <div class="left-section">
+      <div class="logo" aria-hidden="true">
+        <img src="assets/img/contacts/add-desktop/join-bright.svg" alt="">
       </div>
+      <h1>Edit contact</h1>
+      <div class="blue-line"></div>
     </div>
 
-    <!-- Right Side - Light Overlay -->
-    <div class="right-side">
-      <button class="close-btn" (click)="onClose()">
-        <img src="assets/img/contacts/edit-desktop/x-vector-icon-only.svg" alt="cancel">
-      </button>
-
-      <div class="avatar" [style.background]="editedContact.color">
+    <!-- Right Side: Form Section -->
+    <div class="right-section">
+      <!-- Avatar Circle -->
+      <div class="avatar-circle" [style.background]="editedContact.color" aria-hidden="true">
         <span class="initials">{{ editedContact.name.substring(0, 1).toUpperCase() + editedContact.surname.substring(0,
           1).toUpperCase() }}</span>
       </div>
 
-      <form class="contact-form" #f="ngForm" novalidate>
+      <!-- Form -->
+      <form (ngSubmit)="upContact()" #f="ngForm" class="contact-form" novalidate>
+        <!-- Name Input with Validation -->
         <div class="form-field">
-          <div class="input-group">
-            <input type="text" [(ngModel)]="editedContact.name" name="name" placeholder="Name" required
-              #nameInput="ngModel" [class.invalid]="nameInput.invalid && nameInput.touched" />
-            <img src="assets/img/contacts/edit-desktop/person-icon-only.svg" alt="Name Icon" class="input-icon">
+          <div class="input-wrapper">
+            <input type="text" id="name" [(ngModel)]="editedContact.name" name="name" placeholder="Name" required
+              autocomplete="name" #nameInput="ngModel" [class.invalid]="nameInput.invalid && nameInput.touched">
+            <img src="assets/img/contacts/add-desktop/person-icon-only.svg" alt="Name Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -45,11 +47,13 @@
           </div>
         </div>
 
+        <!-- Surname Input with Validation -->
         <div class="form-field">
-          <div class="input-group">
-            <input type="text" [(ngModel)]="editedContact.surname" name="surname" placeholder="Surname" required
-              #surnameInput="ngModel" [class.invalid]="surnameInput.invalid && surnameInput.touched" />
-            <img src="assets/img/contacts/edit-desktop/person-icon-only.svg" alt="Surname Icon" class="input-icon">
+          <div class="input-wrapper">
+            <input type="text" id="surname" [(ngModel)]="editedContact.surname" name="surname" placeholder="Surname" required
+              autocomplete="family-name" #surnameInput="ngModel"
+              [class.invalid]="surnameInput.invalid && surnameInput.touched">
+            <img src="assets/img/contacts/add-desktop/person-icon-only.svg" alt="Surname Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -64,11 +68,12 @@
           </div>
         </div>
 
+        <!-- Email Input with Validation -->
         <div class="form-field">
-          <div class="input-group">
-            <input type="email" [(ngModel)]="editedContact.email" name="email" placeholder="Email" required email
-              #emailInput="ngModel" [class.invalid]="emailInput.invalid && emailInput.touched" />
-            <img src="assets/img/contacts/edit-desktop/mail-icon-only.svg" alt="Email Icon" class="input-icon">
+          <div class="input-wrapper">
+            <input type="email" id="email" [(ngModel)]="editedContact.email" name="email" placeholder="Email" required email
+              autocomplete="email" #emailInput="ngModel" [class.invalid]="emailInput.invalid && emailInput.touched">
+            <img src="assets/img/contacts/add-desktop/mail-icon-only.svg" alt="Email Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
@@ -85,28 +90,33 @@
           </div>
         </div>
 
+        <!-- Phone Input with Validation -->
         <div class="form-field">
-          <div class="input-group">
-            <input type="tel" [(ngModel)]="editedContact.phone" name="phone" placeholder="Phone" #phoneInput="ngModel"
-              [class.invalid]="(phoneInput.invalid && phoneInput.touched) || (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone))" />
-            <img src="assets/img/contacts/edit-desktop/call-icon-only.svg" alt="Phone Icon" class="input-icon">
+          <div class="input-wrapper">
+            <input type="tel" id="phone" [(ngModel)]="editedContact.phone" name="phone" placeholder="Phone" autocomplete="tel"
+              #phoneInput="ngModel"
+              [class.invalid]="(phoneInput.invalid && phoneInput.touched) || (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone))">
+            <img src="assets/img/contacts/add-desktop/call-icon-only.svg" alt="Phone Icon" class="input-icon">
           </div>
 
           <!-- Reserved space for validation message -->
           <div class="validation-message">
             @if (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone)) {
-            <span>The phone number must be at least 6 digits long..</span>
+            <span>The phone number must be at least 6 digits long.</span>
             }
           </div>
         </div>
 
+        <!-- Buttons -->
         <div class="button-group">
-          <button type="button" class="btn-delete" (click)="delContact()">
+          <button type="button" class="btn-cancel" (click)="delContact()">
             Delete
+            <div class="input-icon"></div>
           </button>
-          <button type="button" class="btn-save" (click)="upContact()" [disabled]="!isFormValid(f)">
+
+          <button type="submit" class="btn-create" [disabled]="!isFormValid(f)">
             Save
-            <img src="assets/img/contacts/edit-desktop/check-icon-only.svg" alt="Save Icon" class="button-icon">
+            <img src="assets/img/contacts/add-desktop/check-icon-only.svg" alt="Save Icon" class="input-icon">
           </button>
         </div>
       </form>

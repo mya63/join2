@@ -29,6 +29,13 @@ setTimeout(() => {
 }, 400); // 400ms entspricht der Animation-Duration
 }
 
+/** Schließt bei Klick auf dunklen Hintergrund */
+onOverlayClick(event: MouseEvent) {
+if (event.target === event.currentTarget) {
+  this.onClose();
+}
+}
+
 delContact() {
 this.fbService.contactsArray.length > 0 && this.fbService.contactsGroups.length > 0 &&
 this.fbService.contactsArray.length > this.fbService.id ? this.fbService.delContact(this.fbService.id) : null;
