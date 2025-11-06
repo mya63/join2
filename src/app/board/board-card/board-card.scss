@@ -1,0 +1,115 @@
+/* MYA: Figma Tokens lokal verwendet */
+:host {
+    display: block;
+}
+
+.card {
+    width: 252px;
+    min-height: 196px;
+    padding: 16px;
+    gap: 10px;
+    background: #FFF;
+    border-radius: 24px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    padding: 4px 16px;
+    border-radius: 8px;
+    color: #FFF;
+    font: 400 16px/120% Inter, sans-serif;
+
+    &.blue {
+        background: #0038FF;
+    }
+
+    &.green {
+        background: #1FD7C1;
+    }
+
+    &.cyan {
+        background: #00BEE8;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.title {
+    color: #2A3647;
+    font: 700 16px/120% Inter, sans-serif;
+}
+
+.text {
+    color: #A8A8A8;
+    font: 400 16px/120% Inter, sans-serif;
+}
+
+.progress {
+    position: relative;
+    height: 16px;
+    margin-top: 4px;
+
+    .bar {
+        width: 128px;
+        height: 8px;
+        background: #F4F4F4;
+        border-radius: 8px;
+    }
+
+    .fill {
+        height: 8px;
+        background: #4589FF;
+        border-radius: 16px;
+    }
+
+    .subtasks {
+        position: absolute;
+        left: 139px;
+        top: 0;
+        font: 400 14px/120% Inter, sans-serif;
+        color: #000;
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+
+    .avatars {
+        display: flex;
+        gap: 0;
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #FFF;
+        color: #FFF;
+        font: 400 12px/32px Inter, sans-serif;
+        border-radius: 45px;
+        text-align: center;
+        margin: 0 -8px 0 0;
+        background: #462F8A;
+        /* default */
+    }
+
+    .prio {
+        width: 32px;
+        height: 32px;
+    }
+
+    .prio-urgent {
+        background: #FF3D00;
+        mask: linear-gradient(#000 0 0);
+        -webkit-mask: linear-gradient(#000 0 0);
+        border-radius: 8px;
+    }
+}

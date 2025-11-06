@@ -1,0 +1,67 @@
+<div class="board-page">
+
+    <header class="board-header">
+        <div class="title">Kanban Project Management Tool</div>
+        <div class="right">
+            <button class="help"></button>
+            <div class="user">SM</div>
+        </div>
+    </header>
+
+    <aside class="sidebar">
+        <div class="logo"></div>
+        <nav>
+            <a href="/summary">Summary</a>
+            <a href="/add-task">Add Task</a>
+            <a class="active" href="/board">Board</a>
+            <a href="/contacts">Contacts</a>
+        </nav>
+        <footer>
+            <a href="/legal">Legal notice</a>
+            <a href="/privacy">Privacy Policy</a>
+        </footer>
+    </aside>
+
+    <main class="board-content">
+        <section class="board-head">
+            <h1>Board</h1>
+            <div class="tools">
+                <div class="search">
+                    <input type="text" placeholder="Find Task" />
+                    <button class="icon-search"></button>
+                </div>
+                <button class="btn-add">Add task</button>
+            </div>
+        </section>
+
+        <section class="board-columns board-added">
+            <div class="column">
+                <h2>To do</h2>
+                <app-board-card label="User Story" labelColor="blue" title="Contact Form & Imprint"
+                    text="Create a contact form and imprint page…" [progress]="0" subtasksText="0/2 Subtasks">
+                </app-board-card>
+            </div>
+
+            <div class="column">
+                <h2>In progress</h2>
+                <app-board-card label="User Story" labelColor="blue" title="Kochetwelt Page & Recipe Recommender"
+                    text="Build start page with recipe recommendation…" [progress]="50" subtasksText="1/2 Subtasks">
+                </app-board-card>
+            </div>
+
+            <div class="column">
+                <h2>Await feedback</h2>
+                <app-board-card label="Technical Task" labelColor="green" title="HTML Base Template Creation"
+                    text="Create reusable HTML base template…" [progress]="0" subtasksText="">
+                </app-board-card>
+            </div>
+
+            <div class="column">
+                <h2>Done</h2>
+                <app-board-card label="Technical Task" labelColor="cyan" title="CSS Architecture Planning"
+                    text="Define CSS naming conventions and structure…" [progress]="100" subtasksText="2/2 Subtasks">
+                </app-board-card>
+            </div>
+        </section>
+    </main>
+</div>
