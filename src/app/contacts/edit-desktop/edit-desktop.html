@@ -4,7 +4,7 @@
     <!-- Close Button (Top Right) -->
     <button class="close-btn" (click)="onClose()" type="button" aria-label="Close">
       <div class="vorHover">
-      <img src="assets/img/contacts/add-desktop/x-vector-icon-only.svg" alt="Join Logo">
+        <img src="assets/img/contacts/add-desktop/x-vector-icon-only.svg" alt="Join Logo">
       </div>
     </button>
 
@@ -50,8 +50,8 @@
         <!-- Surname Input with Validation -->
         <div class="form-field">
           <div class="input-wrapper">
-            <input type="text" id="surname" [(ngModel)]="editedContact.surname" name="surname" placeholder="Surname" required
-              autocomplete="family-name" #surnameInput="ngModel"
+            <input type="text" id="surname" [(ngModel)]="editedContact.surname" name="surname" placeholder="Surname"
+              required autocomplete="family-name" #surnameInput="ngModel"
               [class.invalid]="surnameInput.invalid && surnameInput.touched">
             <img src="assets/img/contacts/add-desktop/person-icon-only.svg" alt="Surname Icon" class="input-icon">
           </div>
@@ -71,8 +71,9 @@
         <!-- Email Input with Validation -->
         <div class="form-field">
           <div class="input-wrapper">
-            <input type="email" id="email" [(ngModel)]="editedContact.email" name="email" placeholder="Email" required email
-              autocomplete="email" #emailInput="ngModel" [class.invalid]="emailInput.invalid && emailInput.touched">
+            <input type="email" id="email" [(ngModel)]="editedContact.email" name="email" placeholder="Email" required
+              email autocomplete="email" #emailInput="ngModel"
+              [class.invalid]="emailInput.invalid && emailInput.touched">
             <img src="assets/img/contacts/add-desktop/mail-icon-only.svg" alt="Email Icon" class="input-icon">
           </div>
 
@@ -93,8 +94,8 @@
         <!-- Phone Input with Validation -->
         <div class="form-field">
           <div class="input-wrapper">
-            <input type="tel" id="phone" [(ngModel)]="editedContact.phone" name="phone" placeholder="Phone" autocomplete="tel"
-              #phoneInput="ngModel"
+            <input type="tel" id="phone" [(ngModel)]="editedContact.phone" name="phone" placeholder="Phone"
+              autocomplete="tel" #phoneInput="ngModel"
               [class.invalid]="(phoneInput.invalid && phoneInput.touched) || (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone))">
             <img src="assets/img/contacts/add-desktop/call-icon-only.svg" alt="Phone Icon" class="input-icon">
           </div>
@@ -111,7 +112,10 @@
         <div class="button-group">
           <button type="button" class="btn-cancel" (click)="delContact()">
             Delete
-            <div class="input-icon"></div>
+            <div class="input-icon">
+              <img class="hoverOff" src="assets/img/contacts/add-desktop/x-vector-icon-only.svg" alt="Cancel Icon">
+              <img class="hoverOn" src="assets/img/contacts/add-desktop/x-vector-blue-icon-only.svg" alt="Cancel Icon">
+            </div>
           </button>
 
           <button type="submit" class="btn-create" [disabled]="!isFormValid(f)">
