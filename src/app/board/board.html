@@ -5,15 +5,25 @@
       <div class="tools">
         <div class="search">
           <input type="text" placeholder="Find Task" />
-          <button class="icon-search"></button>
+          <button class="icon-search">
+            <img src="assets/img/board/search.svg" alt="Search Button" />
+          </button>
         </div>
-        <button class="btn-add">Add task</button>
+        <button class="btn-add">
+          Add task
+          <img src="assets/img/board/plus-button.svg" alt="Add Task Button" />
+        </button>
       </div>
     </section>
 
     <section class="board-columns board-added">
       <div class="column">
-        <h2>To do</h2>
+        <div>
+          <h2>To do</h2>
+          <button>
+            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+          </button>
+        </div>
         <app-board-card
           label="User Story"
           labelColor="blue"
@@ -26,7 +36,12 @@
       </div>
 
       <div class="column">
-        <h2>In progress</h2>
+        <div>
+          <h2>In progress</h2>
+          <button>
+            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+          </button>
+        </div>
         <app-board-card
           label="User Story"
           labelColor="blue"
@@ -39,7 +54,12 @@
       </div>
 
       <div class="column">
-        <h2>Await feedback</h2>
+        <div>
+          <h2>Await feedback</h2>
+          <button>
+            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+          </button>
+        </div>
         <app-board-card
           label="Technical Task"
           labelColor="green"
@@ -52,7 +72,12 @@
       </div>
 
       <div class="column">
-        <h2>Done</h2>
+        <div>
+          <h2>Done</h2>
+          <button>
+            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+          </button>
+        </div>
         <app-board-card
           label="Technical Task"
           labelColor="cyan"

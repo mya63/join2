@@ -5,7 +5,6 @@
   --gray: #a8a8a8;
   --border: #d1d1d1;
   --shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-  --white: #ffffff;
 }
 
 .board-page {
@@ -67,8 +66,14 @@
   }
 
   .btn-add {
-    background: var(--dark);
-    color: var(--white);
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background: var(--dark);
+    background-color: #2a3647;
+    // color: var(--white);
+    color: white;
     border: none;
     border-radius: 10px;
     height: 48px;
@@ -76,6 +81,9 @@
     font-size: 21px;
     font-weight: 700;
     cursor: pointer;
+    img {
+      background-color: transparent;
+    }
   }
 }
 
@@ -94,14 +102,26 @@
   flex-direction: column;
   gap: 16px;
 
-  h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #42526e;
-    margin-bottom: 4px;
+  div {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    div {
+      h2 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #42526e;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      button {
+        img {
+          width: 24px;
+        }
+      }
+    }
   }
 
   .no-task {
