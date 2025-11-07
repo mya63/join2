@@ -1,5 +1,3 @@
-//TODO: .list-panel / list-panel__inner Doppelung entfernen
-//TODO: .contact-row / .contact-row__text Doppelung entfernen
 :host {
   display: block;
 }
@@ -72,80 +70,84 @@
 
 .list-panel {
   position: absolute;
+  top: 96px;
   left: 232px;
   width: 456px;
-  max-height: calc(100vh - 96px);
-  top: 96px;
   background: #fff;
   box-shadow: 4px 0 6px rgba(0, 0, 0, 0.08);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
+  height: calc(100vh - 100px);
+  overflow-y: hidden;
 
-  .contacts-list {
-    width: 100%;
+
+  .list-panel__inner {
+    max-height: calc(100vh - 116px);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    flex: 1;
+    flex-direction: column;
+    overflow-y: auto;
 
-    .contacts-list-center {
-      width: 352px;
-      height: auto;
-      overflow: hidden !important;
-      padding-bottom: 100px;
-    }
-  }
-
-}
-
-.list-panel__inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  div {
-    .primary-contact {
-      width: 352px;
-      height: 56px;
-      margin: 0;
-      padding: 12px 16px;
+    .primary-contact-container {
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 16px;
-      background: #2a3647;
-      color: #fff;
-      border: 1px solid #2a3647;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 21px;
-      cursor: pointer;
-    }
+      align-items: flex-end;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+      width: 100%;
+      height: 105px;
+      flex-shrink: 0;
 
-    .primary-contact:hover {
-      background-color: #29abe2;
-      border-style: none;
-      box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.5);
+      .primary-contact {
+        width: 352px;
+        height: 56px;
+        margin: 0;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        background: #2a3647;
+        color: #fff;
+        border: 1px solid #2a3647;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 21px;
+        cursor: pointer;
+      }
+
+      .primary-contact:hover {
+        background-color: #29abe2;
+        border-style: none;
+        box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .contacts-list {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+
+        .contacts-list-center {
+          width: 352px;
+          overflow: hidden !important;
+          padding-bottom: 100px;
+
+          
+
+        }
+      }
     }
   }
 }
 
-.primary-contact-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 10;
-  width: 100%;
-  height: 105px;
-  flex-shrink: 0;
-}
 
-.primary-contact .plus {
+
+
+
+
+.primary-contact {
   font-size: 24px;
   line-height: 1;
 }
@@ -171,6 +173,8 @@
   padding: 15px 24px;
   width: 352px;
   height: 78px;
+  margin-left: auto;
+  margin-right: auto;
   background: #fff;
   border-radius: 10px;
   cursor: pointer;
@@ -203,11 +207,6 @@
   background: transparent !important;
 }
 
-.contact-row__text {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
 
 .name {
   font-size: 20px;
@@ -228,6 +227,10 @@ div.contact-row:active {
   color: white;
 
   .contact-row__text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
     .name {
       color: white;
     }
@@ -271,6 +274,7 @@ div.contact-row:active {
     &:active {
       border-radius: 50%;
       background-color: #0C2E621F;
+
       img {
         transform: scale(1.2);
       }
@@ -481,6 +485,10 @@ div.contact-row:active {
 }
 
 @media (max-width: 1350px) {
+  .primary-contact-container {
+    height: 0px !important;
+  }
+
   .detail-panel {
     .heading {
       position: absolute;
@@ -492,22 +500,25 @@ div.contact-row:active {
     position: absolute;
     left: 0px;
     top: 80px;
-    max-height: calc(100vh - 172px);
   }
 
-  .contacts-list {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
+  .list-panel__inner {
+    height: calc(100vh - 176px);
 
-    .contacts-list-center {
-      width: 352px;
+    .contacts-list {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: auto;
-      overflow: hidden !important;
+
+      .contacts-list-center {
+        width: 352px;
+        height: auto;
+        overflow: hidden !important;
 
 
+      }
     }
   }
 }
@@ -530,20 +541,24 @@ div.contact-row:active {
     top: 80px;
     width: 100%;
     height: auto;
-    max-height: calc(100vh - 172px);
+
 
     .primary-contact-container {
       width: 100%;
     }
 
-    .contacts-list {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      height: auto;
+    .list-panel__inner {
+      height: calc(100vh - 140px);
 
-      .contacts-list-center {
-        width: 352px;
+      .contacts-list {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: auto;
+
+        .contacts-list-center {
+          width: 352px;
+        }
       }
     }
 
@@ -552,7 +567,6 @@ div.contact-row:active {
     }
 
   }
-
 
   .primary-contact {
     position: fixed;
@@ -567,13 +581,13 @@ div.contact-row:active {
     }
   }
 
-
   .primary-contact:after {
     visibility: hidden;
   }
-
-
 }
+
+
+
 
 @media (max-width: 350px) {
   .detail-panel {
@@ -653,8 +667,28 @@ div.contact-row:active {
     padding-bottom: 10px !important;
     height: auto !important;
   }
+
   .letter {
     padding-top: 0px !important;
     margin: 0px !important;
   }
+}
+
+.stayBlue {
+  background-color: #2a3647 !important;
+      color: white !important;
+
+      .contact-row__text {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .name {
+          color: white !important;
+        }
+
+        .mail {
+          color: #007cee !important;
+        }
+      }
 }

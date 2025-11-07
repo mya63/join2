@@ -37,6 +37,7 @@ export class Contacts {
   getContacts() { return this.fbService.contactsArray; }
   getData() { return this.fbService.data; }
   getCurrentContact() { return this.fbService.currentContact; }
+  getActiveContactId(id: number) { return this.fbService.id === id? true : false; }
 
 
   addContact() {

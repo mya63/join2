@@ -14,7 +14,7 @@
           <div class="divider"></div>
 
           @for (item of getContacts(); track item) { @if (item.name.charAt(0).toUpperCase() == group) {
-          <div class="contact-row" (click)="showContact($index)">
+          <div class="contact-row {{ getActiveContactId($index) ? ', stayBlue' : ''}}" (click)="showContact($index)">
             <div class="badge">
               <div class="badge__circle" [style.background]="item.color"></div>
               <div class="badge__initials">

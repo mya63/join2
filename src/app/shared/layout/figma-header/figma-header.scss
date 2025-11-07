@@ -7,6 +7,17 @@
   z-index: var(--z-header, 1500);
 }
 
+.maxContent {
+  position: absolute;
+  display:flex;
+  flex-direction: row;
+  align-items: start;
+  left: 0;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .wrap {
   position: relative;
 

@@ -12,7 +12,6 @@
   height: calc(100vh - 320px);
   left: 750px;
   top: 311px;
-  font-family: 'Inter', sans-serif;
   background-color: #f6f7f8;
   border-radius: 8px;
   padding: 20px;
@@ -75,7 +74,7 @@
 .avatar-initials {
   width: 100%;
   height: 100%;
-  font-family: 'Inter';
+
   font-style: normal;
   font-weight: 500;
   font-size: 47px;
@@ -91,7 +90,7 @@
   width: auto;
   max-width: 350px;
  // height: 56px;
-  font-family: 'Inter';
+
   font-style: normal;
   font-weight: 500;
   font-size: 47px;
@@ -160,7 +159,7 @@
 
 .edit-contact span,
 .delete-contact span {
-  font-family: 'Inter';
+
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -176,7 +175,7 @@
 .section-title {
   width: 600px;
   height: 74px;
-  font-family: 'Inter';
+
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -215,7 +214,7 @@
 }
 
 .detail-label {
-  font-family: 'Inter';
+
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -231,7 +230,7 @@
 .email-link {
   width: 140px;
   height: 19px;
-  font-family: 'Inter';
+
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -253,7 +252,7 @@
 .phone-number {
   width: 124px;
   height: 19px;
-  font-family: 'Inter';
+
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
