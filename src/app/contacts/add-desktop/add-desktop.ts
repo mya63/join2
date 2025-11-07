@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgModel, NgForm } from '@angular/forms';
 import { FbService } from '../../services/fb-service';
 import { IContact } from  '../../interfaces/i-contact';
 
@@ -14,6 +14,12 @@ import { IContact } from  '../../interfaces/i-contact';
 export class AddDesktop {
   @Output() close = new EventEmitter<void>();     // Overlay schließen
   @Output() created = new EventEmitter<void>();   // Toast triggern (Parent)
+  
+  @ViewChild('nameInput') nameInput!: NgModel;
+  @ViewChild('surnameInput') surnameInput!: NgModel;
+  @ViewChild('emailInput') emailInput!: NgModel;
+  @ViewChild('phoneInput') phoneInput!: NgModel;
+  @ViewChild('f') form!: NgForm;
 
   contact: IContact = {} as IContact;
   id = 0;
@@ -46,9 +52,35 @@ export class AddDesktop {
 
   /** Submit-Handler für Create Contact Button */
   onSubmit() {
-    this.addContact();
-    this.created.emit();
-    this.closeOverlay();
+    // Führe alle Validierungsprüfungen aus bevor der Kontakt erstellt wird
+    if (this.validateAllFields()) {
+      this.addContact();
+      this.created.emit();
+      this.closeOverlay();
+    }
+  }
+
+  /** Validiert alle Felder und triggert die Anzeige von Fehlermeldungen */
+  validateAllFields(): boolean {
+    // Markiere alle Felder als "touched" damit Validierungsmeldungen angezeigt werden
+    this.markAllFieldsAsTouched();
+    
+    // Prüfe ob alle Validierungen bestanden sind
+    const isNameValid = !!this.contact.name && !this.hasInvalidCapitalization(this.contact.name);
+    const isSurnameValid = !!this.contact.surname && !this.hasInvalidCapitalization(this.contact.surname);
+    const isEmailValid = !!this.contact.email && !this.hasInvalidEmailFormat(this.contact.email);
+    const isPhoneValid = !this.contact.phone || !this.hasInvalidPhoneFormat(this.contact.phone);
+    
+    return isNameValid && isSurnameValid && isEmailValid && isPhoneValid;
+  }
+
+  /** Markiert alle Formularfelder als touched für die Validierungsanzeige */
+  private markAllFieldsAsTouched(): void {
+    if (this.form && this.form.form) {
+      Object.keys(this.form.form.controls).forEach(key => {
+        this.form.form.get(key)?.markAsTouched();
+      });
+    }
   }
 
   /** Prüft ob der erste Buchstabe eines Namens klein geschrieben ist */
@@ -100,22 +132,12 @@ export class AddDesktop {
       return false;
     }
     
-    // Custom Phone-Validierung
-    if (this.hasInvalidPhoneFormat(this.contact.phone)) {
-      return false;
-    }
+    // Verwende die gleiche Validierungslogik wie bei validateAllFields
+    const isNameValid = !!this.contact.name && !this.hasInvalidCapitalization(this.contact.name);
+    const isSurnameValid = !!this.contact.surname && !this.hasInvalidCapitalization(this.contact.surname);
+    const isEmailValid = !!this.contact.email && !this.hasInvalidEmailFormat(this.contact.email);
+    const isPhoneValid = !this.contact.phone || !this.hasInvalidPhoneFormat(this.contact.phone);
     
-    // Custom Name/Surname-Kapitalisierung
-    if (this.hasInvalidCapitalization(this.contact.name) || 
-        this.hasInvalidCapitalization(this.contact.surname)) {
-      return false;
-    }
-    
-    // Custom Email-Format
-    if (this.hasInvalidEmailFormat(this.contact.email)) {
-      return false;
-    }
-    
-    return true;
+    return isNameValid && isSurnameValid && isEmailValid && isPhoneValid;
   }
 }

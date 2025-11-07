@@ -46,18 +46,23 @@ setTimeout(() => {
 }, 400); // 400ms entspricht der Animation-Duration
 }
 
-async upContact() {
-if (!this.editedContact.name || !this.editedContact.surname || !this.editedContact.email) {
-alert('Please fill in all required fields: Name, Surname, and Email.');
-return;
-} else {
+async upContact(form: any) {
+// Markiere alle Felder als touched, damit Validierungsmeldungen angezeigt werden
+Object.keys(form.controls).forEach(key => {
+  form.controls[key].markAsTouched();
+});
+
+// Verwende die bereits vorhandene isFormValid Methode für vollständige Validierung
+if (!this.isFormValid(form)) {
+  return; // Stoppe die Ausführung wenn das Formular ungültig ist
+}
+
 await this.fbService.updateContact(this.fbService.id, this.editedContact);
 this.isClosing = true;
 // Warte auf Animation-Ende bevor das Overlay geschlossen wird
 setTimeout(() => {
   this.fbService.showEditContact = false;
 }, 400); // 400ms entspricht der Animation-Duration
-}
 }
 
 getCurrentContact() {

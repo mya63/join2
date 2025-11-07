@@ -46,11 +46,26 @@ export class EditMobile {
     }, 300);
   }
 
-  upContact() {
+  upContact(form?: any) {
+    // Validierung vor dem Speichern ausführen
+    if (form && !this.isFormValid(form)) {
+      // Alle Felder als berührt markieren, um Validierungsmeldungen anzuzeigen
+      this.markAllFieldsAsTouched(form);
+      return; // Speichern abbrechen, wenn Validierung fehlschlägt
+    }
+
     this.fbService.updateContact(this.fbService.id, this.editedContact);
     this.onClose();
     this.isClosing = false;
+  }
 
+  /** Markiert alle Formularfelder als berührt, um Validierungsmeldungen anzuzeigen */
+  markAllFieldsAsTouched(form: any) {
+    if (form && form.controls) {
+      Object.keys(form.controls).forEach(key => {
+        form.controls[key].markAsTouched();
+      });
+    }
   }
 
   getCurrentContact() {

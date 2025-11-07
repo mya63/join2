@@ -110,7 +110,7 @@
     <!-- Action Buttons -->
     <div class="buttons">
       <button class="btn-delete" type="button" (click)="delContact()">Delete</button>
-      <button class="btn-save" type="button" (click)="upContact()" [disabled]="!isFormValid(f)">
+      <button class="btn-save" type="button" (click)="upContact(f)">
         <span>Save</span>
         <span class="icon-check" > <img src="assets/img/contacts/edit-mobile/check-icon-only.svg" alt="Check" /></span>
       </button>
