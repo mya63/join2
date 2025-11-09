@@ -1,0 +1,13 @@
+//expample of usage:
+
+// @mixin responsive-font($min, $max) {
+//   font-size: clamp($min, 2vw, $max);
+// }
+
+// @mixin heading($size, $weight: 600) {
+//   font-family: var(--font-family-heading);
+//   font-size: $size;
+//   font-weight: $weight;
+//   line-height: 1.2;
+//   margin: 0;
+// }

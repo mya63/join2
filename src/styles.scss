@@ -1,4 +1,7 @@
 @import 'styles/fonts';
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/themes';
 
 :root {
   --bg: #f6f7f8;
@@ -18,7 +21,6 @@
 @media (max-width: 1024px) {
   :root {
     --sidebar-w: 200px;
-    --header-h: 96px;
   }
 }
 @media (max-width: 768px) {

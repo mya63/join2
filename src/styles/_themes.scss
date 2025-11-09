@@ -1,0 +1,14 @@
+//example of usage:
+
+// :root {
+//   /* Default: Light theme */
+//   --theme-bg: var(--color-bg);
+//   --theme-text: var(--color-text);
+//   --theme-primary: var(--color-primary);
+// }
+
+// [data-theme='dark'] {
+//   --theme-bg: #0f172a;
+//   --theme-text: #f1f5f9;
+//   --theme-primary: #60a5fa;
+// }
