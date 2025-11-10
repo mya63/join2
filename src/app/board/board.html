@@ -16,77 +16,80 @@
       </div>
     </section>
 
-    <section class="board-columns board-added">
-      <div class="column">
-        <div class="column-header">
-          <h2>To do</h2>
-          <button class="add-task-btn">
-            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-          </button>
+    <section class="board-columns">
+      <div class="columns-wrap">
+        <div class="column">
+          <div class="column-header">
+            <h2>To do</h2>
+            <button class="add-task-btn">
+              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+            </button>
+          </div>
+          <div class="no-task"></div>
+          <app-board-card
+            label="User Story"
+            labelColor="blue"
+            title="Contact Form & Imprint"
+            text="Create a contact form and imprint page…"
+            [progress]="0"
+            subtasksText="0/2 Subtasks"
+          >
+          </app-board-card>
         </div>
-        <app-board-card
-          label="User Story"
-          labelColor="blue"
-          title="Contact Form & Imprint"
-          text="Create a contact form and imprint page…"
-          [progress]="0"
-          subtasksText="0/2 Subtasks"
-        >
-        </app-board-card>
-      </div>
 
-      <div class="column">
-        <div class="column-header">
-          <h2>In progress</h2>
-          <button>
-            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-          </button>
+        <div class="column">
+          <div class="column-header">
+            <h2>In progress</h2>
+            <button>
+              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+            </button>
+          </div>
+          <app-board-card
+            label="User Story"
+            labelColor="blue"
+            title="Kochetwelt Page & Recipe Recommender"
+            text="Build start page with recipe recommendation…"
+            [progress]="50"
+            subtasksText="1/2 Subtasks"
+          >
+          </app-board-card>
         </div>
-        <app-board-card
-          label="User Story"
-          labelColor="blue"
-          title="Kochetwelt Page & Recipe Recommender"
-          text="Build start page with recipe recommendation…"
-          [progress]="50"
-          subtasksText="1/2 Subtasks"
-        >
-        </app-board-card>
-      </div>
 
-      <div class="column">
-        <div class="column-header">
-          <h2>Await feedback</h2>
-          <button>
-            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-          </button>
+        <div class="column">
+          <div class="column-header">
+            <h2>Await feedback</h2>
+            <button>
+              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+            </button>
+          </div>
+          <app-board-card
+            label="Technical Task"
+            labelColor="green"
+            title="HTML Base Template Creation"
+            text="Create reusable HTML base template…"
+            [progress]="0"
+            subtasksText=""
+          >
+          </app-board-card>
         </div>
-        <app-board-card
-          label="Technical Task"
-          labelColor="green"
-          title="HTML Base Template Creation"
-          text="Create reusable HTML base template…"
-          [progress]="0"
-          subtasksText=""
-        >
-        </app-board-card>
-      </div>
 
-      <div class="column">
-        <div class="column-header">
-          <h2>Done</h2>
-          <button>
-            <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-          </button>
+        <div class="column">
+          <div class="column-header">
+            <h2>Done</h2>
+            <button>
+              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+            </button>
+          </div>
+          <app-board-card
+            label="Technical Task"
+            labelColor="cyan"
+            title="CSS Architecture Planning"
+            text="Define CSS naming conventions and structure…"
+            [progress]="100"
+            subtasksText="2/2 Subtasks"
+          >
+          </app-board-card>
         </div>
-        <app-board-card
-          label="Technical Task"
-          labelColor="cyan"
-          title="CSS Architecture Planning"
-          text="Define CSS naming conventions and structure…"
-          [progress]="100"
-          subtasksText="2/2 Subtasks"
-        >
-        </app-board-card>
       </div>
     </section>
   </main>
