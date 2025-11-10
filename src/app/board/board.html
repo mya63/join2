@@ -15,16 +15,37 @@
         </button>
       </div>
     </section>
+    <section class="col-head-wrap">
+      <div class="column-header">
+        <h2>To do</h2>
+        <button class="add-task-btn">
+          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+        </button>
+      </div>
 
+      <div class="column-header">
+        <h2>In progress</h2>
+        <button>
+          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+        </button>
+      </div>
+      <div class="column-header">
+        <h2>Await feedback</h2>
+        <button>
+          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+        </button>
+      </div>
+
+      <div class="column-header">
+        <h2>Done</h2>
+        <button>
+          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+        </button>
+      </div>
+    </section>
     <section class="board-columns">
       <div class="columns-wrap">
         <div class="column">
-          <div class="column-header">
-            <h2>To do</h2>
-            <button class="add-task-btn">
-              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-            </button>
-          </div>
           <div class="no-task">No tasks to do</div>
           <app-board-card
             label="User Story"
@@ -38,12 +59,7 @@
         </div>
 
         <div class="column">
-          <div class="column-header">
-            <h2>In progress</h2>
-            <button>
-              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-            </button>
-          </div>
+          <div class="no-task">No tasks in progress</div>
           <app-board-card
             label="User Story"
             labelColor="blue"
@@ -56,12 +72,7 @@
         </div>
 
         <div class="column">
-          <div class="column-header">
-            <h2>Await feedback</h2>
-            <button>
-              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-            </button>
-          </div>
+          <div class="no-task">No tasks awaiting feedback</div>
           <app-board-card
             label="Technical Task"
             labelColor="green"
@@ -74,12 +85,7 @@
         </div>
 
         <div class="column">
-          <div class="column-header">
-            <h2>Done</h2>
-            <button>
-              <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-            </button>
-          </div>
+          <div class="no-task">No tasks done</div>
           <app-board-card
             label="Technical Task"
             labelColor="cyan"
