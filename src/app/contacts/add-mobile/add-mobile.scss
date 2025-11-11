@@ -1,17 +1,14 @@
 $--panel-dark-correction: 33px;
 
-/* ===== Backdrop: fixed, volle Fläche, zentriert ===== */
 .mobile-add-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, .4);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 4000;
-  /* über Bottom-Nav & FAB */
 
-  /* Animation: Fade in backdrop */
   animation: fadeIn 0.3s ease-out forwards;
 }
 
@@ -35,26 +32,20 @@ $--panel-dark-correction: 33px;
   }
 }
 
-/* Closing animation for backdrop */
 .mobile-add-backdrop.closing {
   animation: fadeOut 0.3s ease-in forwards;
 }
 
-/* ===== Dialog ===== */
 .contact-add-mobile {
   position: relative;
   width: min(396px, 94vw);
   height: 760px;
   max-height: 92vh;
-  /* nie aus dem Screen laufen */
-  background-image: linear-gradient(to bottom, #2A3647, #fff, #fff, #fff, #fff);
-  box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+  background-image: linear-gradient(to bottom, #2a3647, #fff, #fff, #fff, #fff);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   border-radius: 30px;
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   overflow: hidden;
-  /* Außen: Panel-Kanten bleiben sauber */
-
-  /* Animation: Slide in from bottom */
   animation: slideInFromBottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
@@ -82,26 +73,23 @@ $--panel-dark-correction: 33px;
   }
 }
 
-/* Closing animation for dialog */
 .contact-add-mobile.closing {
   animation: slideOutToBottom 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
 }
 
-/* Scroll-Inhalt für kleine Displays */
 @supports (height: 100dvh) {
   .contact-add-mobile {
     max-height: 92dvh;
   }
 }
 
-/* ===== Dark Panel ===== */
 .panel-dark {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 351px - $--panel-dark-correction;
-  background: #2A3647;
+  background: #2a3647;
   padding: 66px 24px;
   display: flex;
   flex-direction: column;
@@ -121,12 +109,10 @@ $--panel-dark-correction: 33px;
     right: 0px;
     top: 10px;
     width: 90px;
-    border: 2px solid #29ABE2;
-
+    border: 2px solid #29abe2;
   }
 }
 
-/* ===== Avatar ===== */
 .avatar {
   position: absolute;
   left: 50%;
@@ -136,8 +122,8 @@ $--panel-dark-correction: 33px;
   height: 120px;
   border-radius: 70px;
   border: 3px solid #fff;
-  background: #D1D1D1;
-  box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+  background: #d1d1d1;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   display: grid;
   place-items: center;
   font-size: 47px;
@@ -145,7 +131,6 @@ $--panel-dark-correction: 33px;
   font-weight: 500;
 }
 
-/* ===== Form Fields ===== */
 .form-fields {
   position: absolute;
   left: 16px;
@@ -156,7 +141,6 @@ $--panel-dark-correction: 33px;
   gap: 15px;
 }
 
-/* Field Wrapper - Container für Input + Validation */
 .field-wrapper {
   width: 100%;
 }
@@ -172,18 +156,17 @@ $--panel-dark-correction: 33px;
   width: 100%;
   height: 100%;
   padding: 13px 21px;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
   font-size: 20px;
   line-height: 24px;
   color: #000;
 
-  /* Invalid state styling */
   &.invalid {
-    border-color: #FF8190;
+    border-color: #ff8190;
 
     &:focus {
-      border-color: #FF8190;
+      border-color: #ff8190;
       outline: none;
     }
   }
@@ -205,24 +188,20 @@ $--panel-dark-correction: 33px;
   }
 }
 
-/* Validation Message - sehr klein, passt zwischen die Felder */
 .validation-message {
   min-height: 14px;
-  /* Sehr kleine Höhe */
   padding: 1px 0px 0;
   display: flex;
   align-items: flex-start;
 
   span {
     font-size: 14px;
-    /* Extra kleine Schrift */
-    color: #FF8190;
+    color: #ff8190;
     font-weight: 400;
-    line-height: 0.8
+    line-height: 0.8;
   }
 }
 
-/* ===== Buttons ===== */
 .buttons {
   position: absolute;
   left: 50%;
@@ -231,16 +210,15 @@ $--panel-dark-correction: 33px;
   display: flex;
   gap: 20px;
   align-items: center;
-
 }
 
 .btn-cancel {
   width: 82px;
   height: 51px;
-  border: 1px solid #2A3647;
+  border: 1px solid #2a3647;
   border-radius: 10px;
   background: #fff;
-  color: #2A3647;
+  color: #2a3647;
   font-size: 20px;
   cursor: pointer;
 }
@@ -250,7 +228,7 @@ $--panel-dark-correction: 33px;
   height: 51px;
   border: 0;
   border-radius: 10px;
-  background: #2A3647;
+  background: #2a3647;
   color: #fff;
   font-weight: 700;
   font-size: 21px;
@@ -277,7 +255,6 @@ $--panel-dark-correction: 33px;
   justify-content: center;
 }
 
-/* ===== Close (unsichtbare Klickfläche wie Figma) ===== */
 .btn-close {
   position: absolute;
   right: 16px;
@@ -286,7 +263,7 @@ $--panel-dark-correction: 33px;
   height: 32px;
   border-radius: 56%;
   border: 0;
-  background: #2A3647;
+  background: #2a3647;
   opacity: 1;
   cursor: pointer;
   transition: background-color 0.1s ease;
@@ -295,30 +272,25 @@ $--panel-dark-correction: 33px;
   justify-content: center;
 
   &:active {
-    background: #29ABE2;
+    background: #29abe2;
   }
-
 }
 
-/* ===== Sichtbarkeit je nach Breakpoint ===== */
-/* Mobile & Tablet zeigen (<= 1439px) */
 @media (max-width: 1110px) {
   .mobile-add-backdrop {
     display: flex;
   }
 }
 
-/* Desktop verstecken (Desktop nutzt den großen Add-Overlay) */
 @media (min-width: 1100px) {
   .mobile-add-backdrop {
     display: none !important;
   }
 }
 
-/* Kleinere Phones: etwas kompakter */
 @media (max-width: 420px) {
   .contact-add-mobile {
-    width: 100vw;
+    width: 100dvw;
     border-radius: 20px;
   }
 
@@ -340,10 +312,9 @@ $--panel-dark-correction: 33px;
   }
 
   .buttons {
-    top: 626px - 8px
+    top: 626px - 8px;
   }
 }
-
 
 @media (max-height: 1000px) {
   .contact-add-mobile {
@@ -355,6 +326,4 @@ $--panel-dark-correction: 33px;
     margin-bottom: 70px;
     overflow-y: scroll;
   }
-
-
 }

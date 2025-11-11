@@ -1,0 +1,59 @@
+<!-- board.component.html -->
+<div class="board-page">
+  <main class="board-content">
+    <section class="board-head">
+      <h1>Board</h1>
+      <div class="tools">
+        <div class="search">
+          <input type="text" placeholder="Find Task" (input)="onSearch($event)" />
+          <button class="search-btn">
+            <img src="assets/img/board/search.svg" alt="Search Button" />
+          </button>
+        </div>
+        <button class="btn-add" (click)="addCardToFirstColumn({})">
+          Add task
+          <img src="assets/img/board/plus-button.svg" alt="Add Task Button" />
+        </button>
+      </div>
+    </section>
+
+    <section class="col-head-wrap">
+      <div class="column-header" *ngFor="let column of columns">
+        <h2>{{ column.title }}</h2>
+        <button class="add-task-btn" (click)="addCard(column.title, {})">
+          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
+        </button>
+      </div>
+    </section>
+
+    <section class="add-task"></section>
+
+    <section class="board-columns">
+      <div class="col-wrap">
+        <div class="column" *ngFor="let column of columns">
+          <div class="no-task" *ngIf="!hasCards(column.cards)">
+            No tasks
+            {{
+              column.title === 'To do'
+                ? 'to do'
+                : column.title === 'In progress'
+                ? 'in progress'
+                : column.title === 'Await feedback'
+                ? 'awaiting feedback'
+                : 'done'
+            }}
+          </div>
+
+          <app-board-card
+            *ngFor="let card of getFilteredCards(column.cards)"
+            [card]="card"
+            (cardClick)="onCardClick($event)"
+          >
+          </app-board-card>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<app-add-task> </app-add-task>
