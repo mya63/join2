@@ -34,10 +34,10 @@ addTask() {
     dueDate: this.task.dueDate,
     completed: this.task.completed,
     priority: this.task.priority || 'low',
-/*     assignTo: this.task.assignTo,
+    assignTo: this.task.assignTo,
     category: this.task.category,
     subTasks: [],
-    status: 'to-do' */
+    status: 'to-do'
   };
   this.fbTaskService.addTask(newTask);
 }
