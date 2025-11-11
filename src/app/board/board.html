@@ -1,98 +1,51 @@
+<!-- board.component.html -->
 <div class="board-page">
   <main class="board-content">
     <section class="board-head">
       <h1>Board</h1>
       <div class="tools">
         <div class="search">
-          <input type="text" placeholder="Find Task" />
+          <input type="text" placeholder="Find Task" (input)="onSearch($event)" />
           <button class="search-btn">
             <img src="assets/img/board/search.svg" alt="Search Button" />
           </button>
         </div>
-        <button class="btn-add">
+        <button class="btn-add" (click)="addCardToFirstColumn({})">
           Add task
           <img src="assets/img/board/plus-button.svg" alt="Add Task Button" />
         </button>
       </div>
     </section>
+
     <section class="col-head-wrap">
-      <div class="column-header">
-        <h2>To do</h2>
-        <button class="add-task-btn">
-          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-        </button>
-      </div>
-
-      <div class="column-header">
-        <h2>In progress</h2>
-        <button>
-          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-        </button>
-      </div>
-      <div class="column-header">
-        <h2>Await feedback</h2>
-        <button>
-          <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
-        </button>
-      </div>
-
-      <div class="column-header">
-        <h2>Done</h2>
-        <button>
+      <div class="column-header" *ngFor="let column of columns">
+        <h2>{{ column.title }}</h2>
+        <button class="add-task-btn" (click)="addCard(column.title, {})">
           <img src="assets/img/board/add-button.svg" alt="Add task to column button" />
         </button>
       </div>
     </section>
+
     <section class="board-columns">
       <div class="col-wrap">
-        <div class="column">
-          <div class="no-task">No tasks to do</div>
-          <app-board-card
-            label="User Story"
-            labelColor="blue"
-            title="Contact Form & Imprint"
-            text="Create a contact form and imprint page…"
-            [progress]="0"
-            subtasksText="0/2 Subtasks"
-          >
-          </app-board-card>
-        </div>
+        <div class="column" *ngFor="let column of columns">
+          <div class="no-task" *ngIf="!hasCards(column.cards)">
+            No tasks
+            {{
+              column.title === 'To do'
+                ? 'to do'
+                : column.title === 'In progress'
+                ? 'in progress'
+                : column.title === 'Await feedback'
+                ? 'awaiting feedback'
+                : 'done'
+            }}
+          </div>
 
-        <div class="column">
-          <div class="no-task">No tasks in progress</div>
           <app-board-card
-            label="User Story"
-            labelColor="blue"
-            title="Kochetwelt Page & Recipe Recommender"
-            text="Build start page with recipe recommendation…"
-            [progress]="50"
-            subtasksText="1/2 Subtasks"
-          >
-          </app-board-card>
-        </div>
-
-        <div class="column">
-          <div class="no-task">No tasks awaiting feedback</div>
-          <app-board-card
-            label="Technical Task"
-            labelColor="green"
-            title="HTML Base Template Creation"
-            text="Create reusable HTML base template…"
-            [progress]="0"
-            subtasksText=""
-          >
-          </app-board-card>
-        </div>
-
-        <div class="column">
-          <div class="no-task">No tasks done</div>
-          <app-board-card
-            label="Technical Task"
-            labelColor="cyan"
-            title="CSS Architecture Planning"
-            text="Define CSS naming conventions and structure…"
-            [progress]="100"
-            subtasksText="2/2 Subtasks"
+            *ngFor="let card of getFilteredCards(column.cards)"
+            [card]="card"
+            (cardClick)="onCardClick($event)"
           >
           </app-board-card>
         </div>

@@ -1,26 +1,41 @@
+<!-- board-card.component.html -->
 <div class="card-wrap">
-    <div class="card">
-        <div class="label" [class.blue]="labelColor==='blue'" [class.green]="labelColor==='green'"
-            [class.cyan]="labelColor==='cyan'">
-            {{ label }}
-        </div>
-        <div class="content">
-            <h3 class="title">{{ title }}</h3>
-            <p class="text">{{ text }}</p>
-        </div>
-        <div class="progress" *ngIf="progress > 0">
-            <div class="bar">
-                <div class="fill" [style.width.%]="progress"></div>
-            </div>
-            <span class="subtasks">{{ subtasksText }}</span>
-        </div>
-        <div class="footer">
-            <div class="avatars">
-                <div class="avatar" style="background:#9327FF;">AS</div>
-                <div class="avatar" style="background:#FC71FF;">DE</div>
-                <div class="avatar" style="background:#FFBB2B;">EF</div>
-            </div>
-            <div class="prio prio-urgent" aria-label="priority"></div>
-        </div>
+  <div class="card" (click)="onCardClick()">
+    <div
+      class="label"
+      [class.blue]="card.labelColor === 'blue'"
+      [class.green]="card.labelColor === 'green'"
+      [class.cyan]="card.labelColor === 'cyan'"
+      [class.orange]="card.labelColor === 'orange'"
+    >
+      {{ card.label }}
     </div>
+
+    <div class="content">
+      <h3 class="title">{{ card.title }}</h3>
+      <p class="text">{{ card.text }}</p>
+    </div>
+
+    <div class="progress" *ngIf="card.progress > 0">
+      <div class="bar">
+        <div class="fill" [style.width.%]="card.progress"></div>
+      </div>
+      <span class="subtasks">{{ card.subtasksText }}</span>
+    </div>
+
+    <div class="footer">
+      <div class="avatars">
+        <div class="avatar" *ngFor="let avatar of card.avatars" [style.background]="avatar.color">
+          {{ avatar.initials }}
+        </div>
+      </div>
+      <div
+        class="prio"
+        [class.prio-low]="card.priority === 'low'"
+        [class.prio-medium]="card.priority === 'medium'"
+        [class.prio-urgent]="card.priority === 'urgent'"
+        [attr.aria-label]="card.priority + ' priority'"
+      ></div>
+    </div>
+  </div>
 </div>

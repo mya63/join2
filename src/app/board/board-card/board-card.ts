@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IBoardCard } from '../../interfaces/i-task';
+import { IBoardCard, IAvatar } from '../../interfaces/i-task';
 
 @Component({
   selector: 'app-board-card',
@@ -9,11 +9,20 @@ import { IBoardCard } from '../../interfaces/i-task';
   templateUrl: './board-card.html',
   styleUrls: ['./board-card.scss'],
 })
-export class BoardCard implements IBoardCard {
-  @Input() label = '';
-  @Input() labelColor: 'blue' | 'green' | 'cyan' | 'orange' = 'blue';
-  @Input() title = '';
-  @Input() text = '';
-  @Input() progress = 0;
-  @Input() subtasksText = '';
+export class BoardCard {
+  @Input() card!: IBoardCard;
+  @Output() cardClick = new EventEmitter<IBoardCard>();
+
+  onCardClick(): void {
+    this.cardClick.emit(this.card);
+  }
+
+  getPriorityIcon(): string {
+    const icons = {
+      low: 'assets/icons/prio-low.svg',
+      medium: 'assets/icons/prio-medium.svg',
+      urgent: 'assets/icons/prio-urgent.svg',
+    };
+    return icons[this.card.priority] || icons.urgent;
+  }
 }
