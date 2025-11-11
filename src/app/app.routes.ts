@@ -10,7 +10,6 @@ export const routes: Routes = [
   { path: 'summary', redirectTo: '', pathMatch: 'full' },
   { path: 'contacts', component: Contacts },
   { path: 'crud', component: crud },
-  // { path: 'addc', component: AddContactComponent },
 
   // SPRINT 2 DEMO
   { path: 'board', component: Board },
