@@ -5,11 +5,12 @@ import { Subject, takeUntil } from 'rxjs';
 import { BoardCard } from './board-card/board-card';
 import { IBoardCard, BoardColumn } from '../interfaces/i-task';
 import { BoardService } from '../services/board-service';
+import { AddTask } from './add-task/add-task';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, BoardCard],
+  imports: [CommonModule, BoardCard, AddTask],
   templateUrl: './board.html',
   styleUrls: ['./board.scss'],
 })
