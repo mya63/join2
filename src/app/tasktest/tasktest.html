@@ -20,6 +20,7 @@
       <button type="submit" [disabled]="!task.title">Add Task</button>
     </form>
     <form class="inputTask" (ngSubmit)="updateTask()">
+      dbid: {{ currentTask.dbid }}<br>
       <p class="inputField">8. Position Index: <input name="positionIndex" [(ngModel)]="currentTask.positionIndex"
           placeholder="Position Index" required></p>
       <p class="inputField">10. Title:<input name="title" [(ngModel)]="currentTask.title" placeholder="Title" required></p>
@@ -42,7 +43,7 @@
   </div>
 
   <p>My Tasks:</p>
-  @for (item of gettasks(); track item) {
+  @for (item of gettasks(); track item.dbid) {
   <button (click)="deleteTask(item.dbid)">Delete Task {{ $index + 1 }}</button>
   <p>
     1. dbid: {{ item.dbid }}<br>
