@@ -12,4 +12,5 @@ export interface ITask {
     assignTo: string[];
     priority: string | 'low' | 'medium' | 'high';
     subTasks: ITask[];
+    progress: number
 }[]

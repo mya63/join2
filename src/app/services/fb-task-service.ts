@@ -39,6 +39,7 @@ export class FbTaskService {
       assignTo: this.task.assignTo || [],
       priority: this.task.priority || 'low',
       subTasks: this.task.subTasks || [],
+      progress: this.task.progress || 0,
     };
 
     this.myTasks = onSnapshot(this.tasksCollectionFiltered, (snapshot) => {

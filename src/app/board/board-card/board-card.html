@@ -1,0 +1,41 @@
+<!-- board-card.component.html -->
+<div class="card-wrap">
+  <div class="card" (click)="onCardClick()">
+    <div
+      class="label"
+      [class.blue]="card.category.color === 'blue'"
+      [class.green]="card.category.color === 'green'"
+      [class.cyan]="card.category.color === 'cyan'"
+      [class.orange]="card.category.color === 'orange'"
+    >
+      {{ card.category.name }}
+    </div>
+
+    <div class="content">
+      <h3 class="title">{{ card.title }}</h3>
+      <p class="text">{{ card.description }}</p>
+    </div>
+
+    <div class="progress" *ngIf="card.progress > 0">
+      <div class="bar">
+        <div class="fill" [style.width.%]="card.priority"></div>
+      </div>
+      <span class="subtasks">{{ card.subTasks }}</span>
+    </div>
+
+    <div class="footer">
+      <div class="avatars">
+        <div class="avatar" *ngFor="let avatar of card.avatars" [style.background]="avatar.color">
+          {{ avatar.initials }}
+        </div>
+      </div>
+      <div
+        class="prio"
+        [class.prio-low]="card.priority === 'low'"
+        [class.prio-medium]="card.priority === 'medium'"
+        [class.prio-urgent]="card.priority === 'high'"
+        [attr.aria-label]="card.priority + ' priority'"
+      ></div>
+    </div>
+  </div>
+</div>

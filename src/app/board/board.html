@@ -3,10 +3,10 @@
 </div>
 
 <div class="task-table">
-<div class="collumn"> @for (item of getTaslCollumnOne(); track item) {<div class="cell">To do: {{item.status}}</div>} </div>
-<div class="collumn"> @for (item of getTaslCollumnTwo(); track item) {<div class="cell">In Progress: {{item.status}}</div>} </div>
-<div class="collumn"> @for (item of getTaslCollumnThree(); track item) {<div class="cell">Awaiting Feedback: {{item.status}}</div>} </div>
-<div class="collumn"> @for (item of getTaslCollumnFour(); track item) {<div class="cell">Done: {{item.status}}</div>} </div>
+<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnOne(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
+<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnTwo(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
+<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnThree(); track item) {<div class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
+<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnFour(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
 
     
 </div>      

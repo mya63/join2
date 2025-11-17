@@ -3,11 +3,14 @@ import { BoardHeader } from './board-header/board-header';
 import { FormsModule } from '@angular/forms';
 import { FbTaskService } from '../services/fb-task-service';
 import { ITask } from '../interfaces/i-task';
+import {BoardCard} from './board-card/board-card';
+import { CdkDropList, moveItemInArray, transferArrayItem, CdkDropListGroup, CdkDrag } from '@angular/cdk/drag-drop';
+
 
 
 @Component({
   selector: 'app-board',
-  imports: [BoardHeader, FormsModule],
+  imports: [BoardHeader, FormsModule, BoardCard, CdkDropList, CdkDropListGroup, CdkDrag],
   templateUrl: './board.html',
   styleUrl: './board.scss',
 })
