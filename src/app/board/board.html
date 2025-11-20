@@ -1,0 +1,29 @@
+<div class="board">
+    <app-board-header></app-board-header>
+</div>
+
+<div class="task-table">
+
+    <div id="getTaskCollumnOne" cdkDropList [cdkDropListData]="todoTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of todoTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>
+
+    <div id="getTaskCollumnTwo" cdkDropList [cdkDropListData]="inProgressTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of inProgressTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>
+
+    <div id="getTaskCollumnThree" cdkDropList [cdkDropListData]="awaitFeedbackTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of awaitFeedbackTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>
+
+    <div id="getTaskCollumnFour" cdkDropList [cdkDropListData]="doneTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of doneTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>

@@ -1,0 +1,130 @@
+import { Injectable, inject } from '@angular/core';
+import { Firestore, collectionData, collection, doc, onSnapshot, orderBy, query, where } from '@angular/fire/firestore';
+import { addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
+import { ITask } from '../interfaces/i-task';
+import { FbService } from './fb-service';
+import { BehaviorSubject } from 'rxjs';
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FbTaskService {
+  private db = inject(Firestore);
+  private fbService = inject(FbService);
+
+  myTasks;
+  task: ITask;
+  newTask: ITask;
+  currentTask: ITask;
+  tasksArray: ITask[];
+  //collumnsHeaders: string[] = ['to-do', 'in-progress', 'await-feedback', 'done'];
+  //collumns: number[][] = [[], [], [], []];
+
+  // Subject to notify components when tasks change
+  private tasksUpdatedSubject = new BehaviorSubject<ITask[]>([]);
+  tasksUpdated$ = this.tasksUpdatedSubject.asObservable();
+
+  tasksCollection = collection(this.db, 'tasks');
+  tasksCollectionFiltered = query(this.tasksCollection, where('ownerId', '==', this.fbService.getCurrentUserId()));
+
+  constructor() {
+
+    this.task = {} as ITask;
+    this.currentTask = {} as ITask;
+    this.tasksArray = [];
+    this.newTask = {
+      createDate: new Date().toISOString(),
+      ownerId: this.getCurrentUserId(),
+      completed: this.task.completed || false,
+      dueDate: this.task.dueDate || '',
+      status: this.task.status || 'to-do',
+      positionIndex: this.task.positionIndex || 0,
+      category: this.task.category || { category: 0, categoryProperties: [{ name: 'New Task Category', color: '#000000' }]},
+      title: this.task.title || 'New Task Title',
+      description: this.task.description || 'New Task Description',
+      assignTo: this.task.assignTo || [],
+      priority: this.task.priority || 'low',
+      subTasks: this.task.subTasks || [],
+      progress: this.task.progress || 0,
+    };
+
+    this.myTasks = onSnapshot(this.tasksCollectionFiltered, (snapshot) => {
+      //console.log('Firebase snapshot received, updating tasks');
+      this.tasksArray = [];
+      snapshot.forEach((element) => {
+        this.tasksArray.push({ dbid: element.id, ...element.data() } as ITask);
+      });
+      //console.log('Raw tasks from Firebase:', this.tasksArray);
+      this.tasksArray = this.tasksArray.sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
+      //console.log('Sorted tasks:', this.tasksArray);
+
+      // Notify components that tasks have been updated
+      this.tasksUpdatedSubject.next([...this.tasksArray]);
+    });
+  }
+
+  async addTask(task: ITask) {
+    await addDoc(this.tasksCollection, task);
+  }
+
+  async deleteTask(taskId?: string | undefined) {
+    if (!taskId) return;
+    const taskDoc = doc(this.db, 'tasks', taskId);
+    await deleteDoc(taskDoc);
+  }
+
+  async updateTask(taskId?: string, updatedData?: Partial<ITask>) {
+    if (!taskId || !updatedData) return;
+    //console.log('Updating task:', taskId, updatedData);
+    const taskDoc = doc(this.tasksCollection, taskId);
+    await updateDoc(taskDoc, updatedData);
+  }
+
+  async setNewIndex(task: ITask, newIndex: number, status?: string) {
+    const updateData: Partial<ITask> = { positionIndex: newIndex };
+    if (status) {
+      updateData.status = status;
+    }
+    await this.updateTask(task.dbid, updateData);
+  }
+
+  getCurrentUserId(): string {
+    return this.fbService.getCurrentUserId();
+  }
+
+  async fixPositionsInColumn(status: string) {
+    const tasksInColumn = this.tasksArray
+      .filter(task => task.status === status)
+      .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
+
+    const updates = tasksInColumn.map((task, index) => {
+      if (task.positionIndex !== index) {
+        task.positionIndex = index;
+        return this.updateTask(task.dbid, { positionIndex: index });
+      }
+      return Promise.resolve();
+    });
+
+    await Promise.all(updates);
+  }
+
+  // Behalte die alte Methode für Kompatibilität, aber mache sie optional
+/*   setPositionInCollumn() {
+    let n = 0;
+    this.collumnsHeaders.forEach(header => {
+      this.collumns[n] = [];
+      const myArry = this.tasksArray.filter(task => task.status === header).sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0))
+      myArry.forEach(element => {
+        this.collumns[n].push(element.positionIndex ?? 0);
+      });
+      n++;
+    });
+  } */
+
+
+  onDestroy() {
+    this.myTasks();
+  }
+
+}

@@ -1,0 +1,94 @@
+<div class="tasktest">
+  <div class="taskOperation">
+    <form class="inputTask" (ngSubmit)="addTask(task)">
+      <p class="inputField">7. Position Index: <input name="positionIndex" [(ngModel)]="task.positionIndex"
+          placeholder="Position Index" required></p>
+
+      <p class="inputField">8. Category: <select name="category" [(ngModel)]="task.category.category" required>
+          @for (option of categoryOptions.categoryProperties; track option) {
+          <option [value]="$index">{{ option.name }}</option>
+          }
+        </select></p>
+      <p class="inputField">10. Title:<input name="title" [(ngModel)]="task.title" placeholder="Title" required></p>
+      <p class="inputField">11. Description: <input name="description" [(ngModel)]="task.description"
+          placeholder="Description" required></p>
+      <p class="inputField">12. Due Date: <input name="dueDate" [(ngModel)]="task.dueDate" placeholder="Due Date"
+          required></p>
+      <p class="inputField">13. Completed: <select name="completed" [(ngModel)]="task.completed" required>
+          <option [value]="true">completed</option>
+          <option [value]="false">not completed</option>
+        </select></p>
+      <p class="inputField">14. Priority: <select name="priority" [(ngModel)]="task.priority" required>
+          @for (option of priorityOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+          }
+        </select></p>
+      <p class="inputField">15. Status: <select name="status" [(ngModel)]="task.status" required>
+          @for (option of statusOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+          }
+        </select></p>
+      <button type="submit" [disabled]="!task.title">Add Task</button>
+    </form>
+
+    <form class="inputTask" (ngSubmit)="updateTask()">
+      <p class="inputField">7. Position Index: <input name="positionIndex" [(ngModel)]="currentTask.positionIndex"
+          placeholder="Position Index" required></p>
+
+      <p class="inputField">8. Category: <select name="category" [(ngModel)]="currentTask.category.category" required>
+          @for (option of categoryOptions.categoryProperties; track option) {
+          <option [value]="$index">{{ option.name }}</option>
+          }
+        </select></p>
+
+
+      <p class="inputField">10. Title:<input name="title" [(ngModel)]="currentTask.title" placeholder="Title" required>
+      </p>
+      <p class="inputField">11. Description: <input name="description" [(ngModel)]="currentTask.description"
+          placeholder="Description" required></p>
+      <p class="inputField">12. Due Date: <input name="dueDate" [(ngModel)]="currentTask.dueDate" placeholder="Due Date"
+          required></p>
+      <p class="inputField">13. Completed: <select name="completed" [(ngModel)]="currentTask.completed" required>
+          <option [value]="true">completed</option>
+          <option [value]="false">not completed</option>
+        </select></p>
+      <p class="inputField">14. Priority: <select name="priority" [(ngModel)]="currentTask.priority" required>
+          @for (option of priorityOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+          }
+        </select></p>
+      <p class="inputField">15. Status: <select name="status" [(ngModel)]="currentTask.status" required>
+          @for (option of statusOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+          }
+        </select></p>
+      <button type="submit" [disabled]="!currentTask.title">Save</button>
+      dbid: {{ currentTask.dbid }}<br>
+    </form>
+    <button (click)="nextTask()">Next Task</button>
+  </div>
+
+  <p>My Tasks:</p>
+  @for (item of gettasks(); track item.dbid) {
+  <button (click)="deleteTask(item.dbid)">Delete Task {{ $index + 1 }}</button>
+  <p>
+    1. dbid: {{ item.dbid }}<br>
+    2. Create Date: {{ item.createDate }}<br>
+    3. Owner ID: {{ item.ownerId }}<br>
+    4. Completed: {{ item.completed }}<br>
+    5. Due Date: {{ item.dueDate }}<br>
+    6. Status: {{ item.status }}<br>
+    7. Position Index: {{ item.positionIndex }}<br>
+    8. Category Name: {{ item.category.categoryProperties[item.category.category].name }} <br>
+    9. Category Color: {{ item.category.categoryProperties[item.category.category].color }}<br>
+    10. Title: {{ item.title }}<br>
+    11. Description: {{ item.description }}<br>
+    12. Assign To: {{ item.assignTo }}<br>
+    13. Priority: {{ item.priority }}<br>
+    14. SubTasks: {{ item.subTasks.length }} items<br>
+  </p>
+  <hr>
+  }
+
+
+</div>

@@ -1,0 +1,39 @@
+<div class="board-header">
+  <div class="border-header-top">
+    <h1>Board</h1>
+    <div class="tools">
+      <div class="search">
+        <input type="text" placeholder="Find Task" (input)="onSearch($event.target.value)" />
+        <button class="search-btn">
+          <div class="image-box">
+            <img class="activeOn" src="assets/img/board/board-header/search-blue.svg" alt="Search Button" />
+            <img class="activeOff" src="assets/img/board/board-header/search.svg" alt="Search Button" />
+          </div>
+        </button>
+      </div>
+      <button class="btn-add" (click)="addCard()">
+        Add task
+        <img src="assets/img/board/board-header/add-task-blue-button.svg" alt="Add Task Button" />
+      </button>
+    </div>
+  </div>
+  <div class="collumn-header">
+    <div class="collumn">To do
+      <div class="add-task-column">
+        <img class="activeOff" src="assets/img/board/board-header/add-task-column.svg" alt="To Do Icon" />
+        <img class="activeOn" src="assets/img/board/board-header/add-task-column-blue.svg" alt="To Do Icon" />
+      </div>
+    </div>
+    <div class="collumn">In progress <div class="add-task-column">
+        <img class="activeOff" src="assets/img/board/board-header/add-task-column.svg" alt="To Do Icon" />
+        <img class="activeOn" src="assets/img/board/board-header/add-task-column-blue.svg" alt="To Do Icon" />
+      </div>
+    </div>
+    <div class="collumn">Await feedback <div class="add-task-column">
+        <img class="activeOff" src="assets/img/board/board-header/add-task-column.svg" alt="To Do Icon" />
+        <img class="activeOn" src="assets/img/board/board-header/add-task-column-blue.svg" alt="To Do Icon" />
+      </div>
+    </div>
+    <div class="collumn">Done</div>
+  </div>
+</div>
