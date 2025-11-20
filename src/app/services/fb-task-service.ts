@@ -40,7 +40,7 @@ export class FbTaskService {
       dueDate: this.task.dueDate || '',
       status: this.task.status || 'to-do',
       positionIndex: this.task.positionIndex || 0,
-      category: this.task.category || { category: 0, categoryProperties: [{ name: 'New Task Category', color: '#000000' }]},
+      category: this.task.category || { category: 0, categoryProperties: [{ name: 'New Task Category', color: '#000000' }] },
       title: this.task.title || 'New Task Title',
       description: this.task.description || 'New Task Description',
       assignTo: this.task.assignTo || [],
@@ -76,8 +76,11 @@ export class FbTaskService {
 
   async updateTask(taskId?: string, updatedData?: Partial<ITask>) {
     if (!taskId || !updatedData) return;
-    //console.log('Updating task:', taskId, updatedData);
+    if (updatedData.status) {
+      updatedData.status == 'done' ? updatedData.completed = true : updatedData.completed = false;
+    }
     const taskDoc = doc(this.tasksCollection, taskId);
+    //console.log('Updating task:', taskId, updatedData);
     await updateDoc(taskDoc, updatedData);
   }
 
@@ -110,17 +113,17 @@ export class FbTaskService {
   }
 
   // Behalte die alte Methode für Kompatibilität, aber mache sie optional
-/*   setPositionInCollumn() {
-    let n = 0;
-    this.collumnsHeaders.forEach(header => {
-      this.collumns[n] = [];
-      const myArry = this.tasksArray.filter(task => task.status === header).sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0))
-      myArry.forEach(element => {
-        this.collumns[n].push(element.positionIndex ?? 0);
+  /*   setPositionInCollumn() {
+      let n = 0;
+      this.collumnsHeaders.forEach(header => {
+        this.collumns[n] = [];
+        const myArry = this.tasksArray.filter(task => task.status === header).sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0))
+        myArry.forEach(element => {
+          this.collumns[n].push(element.positionIndex ?? 0);
+        });
+        n++;
       });
-      n++;
-    });
-  } */
+    } */
 
 
   onDestroy() {

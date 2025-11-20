@@ -7,7 +7,7 @@ import { ITask } from '../interfaces/i-task';
 
 @Component({
   selector: 'app-tasktest',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,],
   templateUrl: './tasktest.html',
   styleUrl: './tasktest.scss',
 })
@@ -22,8 +22,8 @@ export class Tasktest {
     {
       category: 0,
       categoryProperties: [
-        { name: 'User Story', color: 'blue' },
-        { name: 'Technical Task', color: 'green' },
+        { name: 'User Story', color: '#0038FF' },
+        { name: 'Technical Task', color: '#1FD7C1' },
       ]
     };
   columnIndex: number = 0;
@@ -43,6 +43,7 @@ export class Tasktest {
   }
 
   addTask(newTask: ITask) {
+    (newTask.positionIndex < 0 || newTask.positionIndex > 9999 || typeof newTask.positionIndex !== 'number') ? newTask.positionIndex = 0 : null;
     newTask.category.categoryProperties[0].color = this.categoryOptions.categoryProperties[newTask.category.category].color;
     newTask.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[newTask.category.category].name;
     newTask.category.category = 0;
