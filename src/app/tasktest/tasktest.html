@@ -3,11 +3,37 @@
     <form class="inputTask" (ngSubmit)="addTask(task)">
 
 
-      <p class="inputField">13. Assign To: <select name="category" [(ngModel)]="task.assignTo" required>
-          @for (user of this.getUserForTask(); track user) {
-          <option [value]="$index">{{ user.name }} {{ user.surname }}</option>
+      <div class="inputField">
+        <p>13. Assign To:</p>
+        <div class="assign-to-dropdown">
+          <div class="dropdown-header" (click)="toggleAssignDropdown('task')">
+            <span class="selected-users">
+              @if (task.assignTo && task.assignTo.length > 0) {
+                @for (user of task.assignTo; track user) {
+                  {{ user.name }} {{ user.surname }}@if (!$last) {, }
+                }
+              } @else {
+                assign users
+              }
+            </span>
+            <span class="dropdown-arrow" [class.open]="showAssignDropdown.task">▼</span>
+          </div>
+          @if (showAssignDropdown.task) {
+          <div class="assign-to-container">
+            @for (user of this.getUserForTask(); track user) {
+            <label class="user-checkbox">
+              <input 
+                type="checkbox" 
+                [checked]="isUserAssigned(user, task.assignTo)"
+                (change)="toggleUserAssignment(user, task.assignTo)"
+              >
+              {{ user.name }} {{ user.surname }}
+            </label>
+            }
+          </div>
           }
-        </select></p>
+        </div>
+      </div>
 
 
 
@@ -47,6 +73,37 @@
     </form>
     <form class="inputTask" (ngSubmit)="updateTask()">
 
+      <div class="inputField">
+        <p>13. Assign To:</p>
+        <div class="assign-to-dropdown">
+          <div class="dropdown-header" (click)="toggleAssignDropdown('currentTask')">
+            <span class="selected-users">
+              @if (currentTask.assignTo && currentTask.assignTo.length > 0) {
+                @for (user of currentTask.assignTo; track user) {
+                  {{ user.name }} {{ user.surname }}@if (!$last) {, }
+                }
+              } @else {
+                assign users...
+              }
+            </span>
+            <span class="dropdown-arrow" [class.open]="showAssignDropdown.currentTask">▼</span>
+          </div>
+          @if (showAssignDropdown.currentTask) {
+          <div class="assign-to-container">
+            @for (user of this.getUserForTask(); track user) {
+            <label class="user-checkbox">
+              <input 
+                type="checkbox" 
+                [checked]="isUserAssigned(user, currentTask.assignTo)"
+                (change)="toggleUserAssignment(user, currentTask.assignTo)"
+              >
+              {{ user.name }} {{ user.surname }}
+            </label>
+            }
+          </div>
+          }
+        </div>
+      </div>
 
       <p class="inputField ">14. Due Date:<span class="out"><input class="in" name="dueDate"
             [(ngModel)]="currentTask.dueDate" placeholder="Due Date" required> <img src="assets/img/board/calendar.svg"
@@ -92,7 +149,10 @@
       item.category.categoryProperties[item.category.category].name }}</span><br>
     10. Title: {{ item.title }}<br>
     11. Description: {{ item.description }}<br>
-    12. Assign To: {{ item.assignTo }}<br>
+    12. Assign To: 
+    @for (assignedUser of item.assignTo; track assignedUser) {
+      {{ assignedUser.name }} {{ assignedUser.surname }}@if (!$last) {, }
+    }<br>
     13. Priority: {{ item.priority }}<br>
     14. SubTasks: {{ item.subTasks.length }} items<br>
     19. Status: {{ item.status }}<br>

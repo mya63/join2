@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FbService } from '../services/fb-service';
 import { FbTaskService } from '../services/fb-task-service';
 import { ITask } from '../interfaces/i-task';
+import { IContact } from '../interfaces/i-contact';
 
 
 @Component({
@@ -37,12 +38,21 @@ export class Tasktest {
   currentYear: number = new Date().getFullYear();
   selectedDate: Date | null = null;
   today: Date = new Date();
+  showAssignDropdown = { task: false, currentTask: false };
 
   constructor(public fbTaskService: FbTaskService) {
 
     this.task = this.fbTaskService.newTask;
+    // Stelle sicher, dass assignTo ein Array ist
+    if (!this.task.assignTo) {
+      this.task.assignTo = [];
+    }
     this.columnIndex = 0;
     this.currentTask = this.task;
+    // Stelle auch für currentTask sicher, dass assignTo ein Array ist
+    if (!this.currentTask.assignTo) {
+      this.currentTask.assignTo = [];
+    }
     console.log(this.currentTask, this.columnIndex);
 
     this.fbTaskService.currentTask = this.currentTask
@@ -80,11 +90,6 @@ export class Tasktest {
 
   }
 
-  getUserForTask() {
-    console.log(this.FbService.contactsArray);
-    
-    return this.FbService.contactsArray
-  };
 
 
   openCalendar(target: 'task' | 'currentTask') {
@@ -179,5 +184,41 @@ export class Tasktest {
     }
   }
 
+
+  getUserForTask() {
+    console.log(this.FbService.contactsArray);
+    return this.FbService.contactsArray
+  }
+
+  isUserAssigned(user: IContact, assignedUsers: IContact[]): boolean {
+    if (!assignedUsers || !Array.isArray(assignedUsers)) {
+      return false;
+    }
+    return assignedUsers.some(assignedUser => 
+      assignedUser.id === user.id
+    );
+  }
+
+  toggleUserAssignment(user: IContact, assignedUsers: IContact[]): void {
+    if (!assignedUsers) {
+      assignedUsers = [];
+    }
+    
+    const index = assignedUsers.findIndex(assignedUser => 
+      assignedUser.id === user.id 
+    );
+    
+    if (index > -1) {
+      // User ist bereits zugewiesen, entfernen
+      assignedUsers.splice(index, 1);
+    } else {
+      // User ist nicht zugewiesen, hinzufügen
+      assignedUsers.push(user);
+    }
+  }
+
+  toggleAssignDropdown(target: 'task' | 'currentTask'): void {
+    this.showAssignDropdown[target] = !this.showAssignDropdown[target];
+  }
 
 }
