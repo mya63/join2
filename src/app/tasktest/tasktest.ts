@@ -27,6 +27,12 @@ export class Tasktest {
       ]
     };
   columnIndex: number = 0;
+  showCalendar: boolean = false;
+  calendarTarget: 'task' | 'currentTask' = 'task';
+  currentMonth: number = new Date().getMonth();
+  currentYear: number = new Date().getFullYear();
+  selectedDate: Date | null = null;
+  today: Date = new Date();
 
   constructor(public fbTaskService: FbTaskService) {
 
@@ -68,6 +74,94 @@ export class Tasktest {
     this.fbTaskService.currentTask = this.currentTask;
     console.log(this.currentTask, this.columnIndex);
 
+  }
+
+  openCalendar(target: 'task' | 'currentTask') {
+    this.calendarTarget = target;
+    this.showCalendar = true;
+  }
+
+  closeCalendar() {
+    this.showCalendar = false;
+  }
+
+  selectDate(date: Date) {
+    if (date < new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
+      return; // Verhindere Auswahl von Terminen in der Vergangenheit
+    }
+    
+    const dateString = date.toISOString().split('T')[0];
+    
+    if (this.calendarTarget === 'task') {
+      this.task.dueDate = dateString;
+    } else {
+      this.currentTask.dueDate = dateString;
+    }
+    
+    this.closeCalendar();
+  }
+
+  getDaysInMonth(month: number, year: number): number {
+    return new Date(year, month + 1, 0).getDate();
+  }
+
+  getFirstDayOfMonth(month: number, year: number): number {
+    return new Date(year, month, 1).getDay();
+  }
+
+  getCalendarDays(): (number | null)[] {
+    const daysInMonth = this.getDaysInMonth(this.currentMonth, this.currentYear);
+    const firstDay = this.getFirstDayOfMonth(this.currentMonth, this.currentYear);
+    const days: (number | null)[] = [];
+
+    // Füge leere Zellen für die Tage vor dem ersten Tag des Monats hinzu
+    for (let i = 0; i < firstDay; i++) {
+      days.push(null);
+    }
+
+    // Füge die Tage des Monats hinzu
+    for (let day = 1; day <= daysInMonth; day++) {
+      days.push(day);
+    }
+
+    return days;
+  }
+
+  previousMonth() {
+    if (this.currentMonth === 0) {
+      this.currentMonth = 11;
+      this.currentYear--;
+    } else {
+      this.currentMonth--;
+    }
+  }
+
+  nextMonth() {
+    if (this.currentMonth === 11) {
+      this.currentMonth = 0;
+      this.currentYear++;
+    } else {
+      this.currentMonth++;
+    }
+  }
+
+  getMonthName(month: number): string {
+    const months = [
+      'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+      'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
+    ];
+    return months[month];
+  }
+
+  isDayInPast(day: number): boolean {
+    const date = new Date(this.currentYear, this.currentMonth, day);
+    return date < new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+  }
+
+  onDayClick(day: number) {
+    if (!this.isDayInPast(day)) {
+      this.selectDate(new Date(this.currentYear, this.currentMonth, day));
+    }
   }
 
 

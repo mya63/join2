@@ -4,7 +4,7 @@
 
 
         <p class="inputField ">12. Due Date:<span class="out"><input  class="in" name="dueDate" [(ngModel)]="task.dueDate" placeholder="Due Date"
-            required> <img src="assets/img/board/calendar.svg" alt="Calendar"></span></p>
+            required> <img src="assets/img/board/calendar.svg" alt="Calendar" (click)="openCalendar('task')" class="calendar-icon"></span></p>
 
 
       <p class="inputField">15. Category: <select name="category" [(ngModel)]="task.category.category" required>
@@ -38,8 +38,8 @@
     <form class="inputTask" (ngSubmit)="updateTask()">
 
 
-      <p class="inputField">12. Due Date: <input name="dueDate" [(ngModel)]="currentTask.dueDate" placeholder="Due Date"
-          required></p>
+      <p class="inputField">12. Due Date: <span class="date-input-container"><input name="dueDate" [(ngModel)]="currentTask.dueDate" placeholder="Due Date"
+          required> <img src="assets/img/board/calendar.svg" alt="Calendar" (click)="openCalendar('currentTask')" class="calendar-icon"></span></p>
 
 
       <p class="inputField">15. Category: <select name="category" [(ngModel)]="currentTask.category.category" required>
@@ -96,5 +96,41 @@
   <hr>
   }
 
+  <!-- Kalender Widget -->
+  @if (showCalendar) {
+  <div class="calendar-overlay" (click)="closeCalendar()">
+    <div class="calendar-widget" (click)="$event.stopPropagation()">
+      <div class="calendar-header">
+        <button type="button" (click)="previousMonth()" class="nav-btn">‹</button>
+        <span class="month-year">{{ getMonthName(currentMonth) }} {{ currentYear }}</span>
+        <button type="button" (click)="nextMonth()" class="nav-btn">›</button>
+      </div>
+      <div class="calendar-grid">
+        <div class="day-header">So</div>
+        <div class="day-header">Mo</div>
+        <div class="day-header">Di</div>
+        <div class="day-header">Mi</div>
+        <div class="day-header">Do</div>
+        <div class="day-header">Fr</div>
+        <div class="day-header">Sa</div>
+        
+        @for (day of getCalendarDays(); track $index) {
+          @if (day === null) {
+            <div class="calendar-day empty"></div>
+          } @else {
+            <div 
+              class="calendar-day"
+              [class.past]="isDayInPast(day)"
+              [class.today]="currentYear === today.getFullYear() && currentMonth === today.getMonth() && day === today.getDate()"
+              (click)="onDayClick(day)">
+              {{ day }}
+            </div>
+          }
+        }
+      </div>
+      <button type="button" (click)="closeCalendar()" class="close-btn">Schließen</button>
+    </div>
+  </div>
+  }
 
 </div>
