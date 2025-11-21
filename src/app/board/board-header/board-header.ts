@@ -12,11 +12,16 @@ export class BoardHeader {
   
   // Output Event für das Öffnen der Add-Card Komponente
   addTaskToColumn = output<string>();
+  
+  // Output Event für die Suchfunktionalität
+  searchTasks = output<string>();
 
   constructor() {}
 
   onSearch(searchPhrase: string): void {
     console.log('searching for', searchPhrase );
+    this.searchPhrase = searchPhrase;
+    this.searchTasks.emit(searchPhrase);
   };
 
   addCard(columnType: string): void {

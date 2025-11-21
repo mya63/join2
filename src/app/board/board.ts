@@ -34,6 +34,9 @@ export class Board implements OnInit, OnDestroy {
   // Overlay properties
   showAddCardOverlay: boolean = false;
   selectedColumn: string = '';
+  
+  // Search properties
+  searchTerm: string = '';
 
   private tasksSubscription: Subscription = new Subscription();
 
@@ -84,23 +87,26 @@ export class Board implements OnInit, OnDestroy {
     this.awaitFeedbackTasks.length = 0;
     this.doneTasks.length = 0;
 
-    // Populate arrays with sorted tasks
-    const todoTasks = this.fbTaskService.tasksArray
+    // Get filtered tasks based on search term
+    const filteredTasks = this.getFilteredTasks();
+
+    // Populate arrays with sorted and filtered tasks
+    const todoTasks = filteredTasks
       .filter(task => task.status === 'to-do')
       .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
     this.todoTasks.push(...todoTasks);
 
-    const inProgressTasks = this.fbTaskService.tasksArray
+    const inProgressTasks = filteredTasks
       .filter(task => task.status === 'in-progress')
       .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
     this.inProgressTasks.push(...inProgressTasks);
 
-    const awaitFeedbackTasks = this.fbTaskService.tasksArray
+    const awaitFeedbackTasks = filteredTasks
       .filter(task => task.status === 'await-feedback')
       .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
     this.awaitFeedbackTasks.push(...awaitFeedbackTasks);
 
-    const doneTasks = this.fbTaskService.tasksArray
+    const doneTasks = filteredTasks
       .filter(task => task.status === 'done')
       .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
     this.doneTasks.push(...doneTasks);
@@ -235,6 +241,25 @@ export class Board implements OnInit, OnDestroy {
   onDragEnded() {
     //console.log('Drag ended');
     // Don't set isDragging to false here, let the drop method handle it
+  }
+
+  // Search methods
+  onSearchTasks(searchTerm: string): void {
+    this.searchTerm = searchTerm.toLowerCase().trim();
+    console.log('Searching for tasks with term:', this.searchTerm);
+    this.updateColumnArrays();
+  }
+
+  private getFilteredTasks(): ITask[] {
+    if (!this.searchTerm) {
+      return this.fbTaskService.tasksArray;
+    }
+
+    return this.fbTaskService.tasksArray.filter(task => {
+      const titleMatch = task.title?.toLowerCase().includes(this.searchTerm) || false;
+      const descriptionMatch = task.description?.toLowerCase().includes(this.searchTerm) || false;
+      return titleMatch || descriptionMatch;
+    });
   }
 
   // Overlay-Methoden
