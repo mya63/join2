@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { FbTaskService } from '../services/fb-task-service';
 import { ITask } from '../interfaces/i-task';
 import { BoardCard } from './board-card/board-card';
+import { AddCard } from './add-card/add-card';
 import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag, CdkDropList, } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
 
 
 @Component({
   selector: 'app-board',
-  imports: [BoardHeader, FormsModule, BoardCard, CdkDropList, CdkDrag, CommonModule],
+  imports: [BoardHeader, FormsModule, BoardCard, AddCard, CdkDropList, CdkDrag, CommonModule],
   templateUrl: './board.html',
   styleUrl: './board.scss',
 })
@@ -29,6 +30,10 @@ export class Board implements OnInit, OnDestroy {
   inProgressTasks: ITask[] = [];
   awaitFeedbackTasks: ITask[] = [];
   doneTasks: ITask[] = [];
+
+  // Overlay properties
+  showAddCardOverlay: boolean = false;
+  selectedColumn: string = '';
 
   private tasksSubscription: Subscription = new Subscription();
 
@@ -230,5 +235,17 @@ export class Board implements OnInit, OnDestroy {
   onDragEnded() {
     //console.log('Drag ended');
     // Don't set isDragging to false here, let the drop method handle it
+  }
+
+  // Overlay-Methoden
+  openAddCardOverlay(columnType: string): void {
+    this.selectedColumn = columnType;
+    this.showAddCardOverlay = true;
+    console.log('Opening add card overlay for column:', columnType);
+  }
+
+  closeAddCardOverlay(): void {
+    this.showAddCardOverlay = false;
+    this.selectedColumn = '';
   }
 }

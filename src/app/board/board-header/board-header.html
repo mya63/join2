@@ -11,7 +11,7 @@
           </div>
         </button>
       </div>
-      <button class="btn-add" (click)="addCard()">
+      <button class="btn-add" (click)="addCard('to-do')">
         Add task
         <img src="assets/img/board/board-header/add-task-blue-button.svg" alt="Add Task Button" />
       </button>
@@ -19,17 +19,17 @@
   </div>
   <div class="collumn-header">
     <div class="collumn">To do
-      <div class="add-task-column">
+      <div class="add-task-column" (click)="addCard('to-do')">
         <img class="activeOff" src="assets/img/board/board-header/add-task-column.svg" alt="To Do Icon" />
         <img class="activeOn" src="assets/img/board/board-header/add-task-column-blue.svg" alt="To Do Icon" />
       </div>
     </div>
-    <div class="collumn">In progress <div class="add-task-column">
+    <div class="collumn">In progress <div class="add-task-column" (click)="addCard('in-progress')">
         <img class="activeOff" src="assets/img/board/board-header/add-task-column.svg" alt="To Do Icon" />
         <img class="activeOn" src="assets/img/board/board-header/add-task-column-blue.svg" alt="To Do Icon" />
       </div>
     </div>
-    <div class="collumn">Await feedback <div class="add-task-column">
+    <div class="collumn">Await feedback <div class="add-task-column" (click)="addCard('await-feedback')">
         <img class="activeOff" src="assets/img/board/board-header/add-task-column.svg" alt="To Do Icon" />
         <img class="activeOn" src="assets/img/board/board-header/add-task-column-blue.svg" alt="To Do Icon" />
       </div>

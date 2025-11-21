@@ -1,6 +1,15 @@
 <div class="board">
-    <app-board-header></app-board-header>
+    <app-board-header (addTaskToColumn)="openAddCardOverlay($event)"></app-board-header>
 </div>
+
+<!-- Add-Card Overlay -->
+@if (showAddCardOverlay) {
+  <div class="overlay" (click)="closeAddCardOverlay()">
+    <div class="overlay-content" (click)="$event.stopPropagation()">
+      <app-add-card [selectedColumn]="selectedColumn" (closeOverlay)="closeAddCardOverlay()"></app-add-card>
+    </div>
+  </div>
+}
 
 <div class="task-table">
 
