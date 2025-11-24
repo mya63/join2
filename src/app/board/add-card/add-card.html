@@ -1,70 +1,70 @@
 <div class="add-task-page">
   <main class="content">
-    <h1 class="page-title">Add Task</h1>
-
-    <div class="form-grid">
-      <section class="col left-col">
-        <div class="field">
-          <label class="label">Title*</label>
-          <div class="input">
-            <input type="text" placeholder="Enter a title" />
+    <div class="content-top">
+      <h1 class="page-title">Add Task</h1>
+      <div class="input-content">
+        <div class="col left-col">
+          <div class="field">
+            <label class="label">Title*</label>
+            <div class="input">
+              <input type="text" placeholder="Enter a title" />
+            </div>
+            <div class="hint hint--error hide-on-empty">*This field is required</div>
           </div>
-          <div class="hint hint--error hide-on-empty">*This field is required</div>
-        </div>
 
-        <div class="field">
-          <label class="label">Description</label>
-          <div class="textarea">
-            <textarea placeholder="Enter a Description"></textarea>
-            <span class="dots"></span>
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="textarea">
+              <textarea placeholder="Enter a Description"></textarea>
+              <span class="dots"></span>
+            </div>
+            <div class="hint hide-on-empty"></div>
           </div>
-          <div class="hint hide-on-empty"></div>
-        </div>
 
-        <div class="field">
-          <label class="label">Due date*</label>
-          <div class="input input--with-icon">
-            <input type="text" placeholder="dd/mm/yyyy" />
-            <span class="calendar"></span>
-          </div>
-          <div class="hint hint--error hide-on-empty">*This field is required</div>
-        </div>
-      </section>
-
-      <div class="divider-vert"></div>
-
-      <section class="col right-col">
-        <div class="field">
-          <label class="label">Priority</label>
-          <!-- TODO: dev logic -->
-          <!-- <app-priority-selector [(value)]="form.priority"></app-priority-selector> -->
-        </div>
-
-        <div class="field">
-          <label class="label">Assigned to</label>
-          <button class="select">
-            <span>Select contacts to assign</span>
-            <span class="caret"></span>
-          </button>
-        </div>
-
-        <div class="field">
-          <label class="label">Category*</label>
-          <button class="select">
-            <span>Select contacts to assign</span>
-            <span class="caret"></span>
-          </button>
-        </div>
-
-        <div class="field">
-          <label class="label">Subtasks</label>
-          <div class="input">
-            <input type="text" placeholder="Add new subtask" />
+          <div class="field">
+            <label class="label">Due date*</label>
+            <div class="input input--with-icon">
+              <input type="text" placeholder="dd/mm/yyyy" />
+              <span class="calendar"></span>
+            </div>
+            <div class="hint hint--error hide-on-empty">*This field is required</div>
           </div>
         </div>
-      </section>
+
+        <div class="divider-vert"></div>
+
+        <div class="col right-col">
+          <div class="priority">
+            <label class="label">Priority</label>
+            <!-- TODO: dev logic -->
+            <!-- <app-priority-selector [(value)]="form.priority"></app-priority-selector> -->
+          </div>
+
+          <div class="field">
+            <label class="label">Assigned to</label>
+            <button class="select">
+              <span>Select contacts to assign</span>
+              <span class="caret"></span>
+            </button>
+          </div>
+
+          <div class="field">
+            <label class="label">Category*</label>
+            <button class="select">
+              <span>Select contacts to assign</span>
+              <span class="caret"></span>
+            </button>
+          </div>
+
+          <div class="field">
+            <label class="label">Subtasks</label>
+            <div class="input">
+              <input type="text" placeholder="Add new subtask" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
     <div class="actions">
       <button type="button" class="btn btn--secondary desktop-only">Cancel</button>
       <button type="button" class="btn btn--primary">
@@ -72,6 +72,7 @@
         <i class="check"></i>
       </button>
     </div>
+
   </main>
 </div>
 
