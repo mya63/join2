@@ -37,14 +37,22 @@
           <div class="field-priority">
             <label class="label">Priority</label>
             <div class="priority-buttons">
-              <button class="priority-btn priority-btn--urgent">
-                <span>urgent</span>
+              <button class="priority-btn urgent" [class.selected]='whichPriority("urgent")'
+                (click)="setPriority('urgent')">
+                <span>Urgent</span>
+                <img [class.displayNone]='whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent.svg" alt="">
+                <img [class.displayNone]='!whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent-white.svg" alt="">
               </button>
-              <button class="priority-btn [selected]='true' priority-btn--medium">
+              <button class="priority-btn medium" [class.selected]='whichPriority("medium")'
+                (click)="setPriority('medium')">
                 <span>Medium</span>
+                <img [class.displayNone]='whichPriority("medium")' src="assets/img/board/board-card/prio-medium.svg" alt="">
+                <img [class.displayNone]='!whichPriority("medium")' src="assets/img/board/board-card/prio-medium-white.svg" alt="">
               </button>
-              <button class="priority-btn priority-btn--low">
+              <button class="priority-btn low" [class.selected]='whichPriority("low")' (click)="setPriority('low')">
                 <span>Low</span>
+                <img [class.displayNone]='whichPriority("low")' src="assets/img/board/board-card/prio-low.svg" alt="">
+                <img [class.displayNone]='!whichPriority("low")' src="assets/img/board/board-card/prio-low-white.svg" alt="">
               </button>
             </div>
           </div>
