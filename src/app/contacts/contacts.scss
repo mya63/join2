@@ -521,8 +521,6 @@ div.contact-row:active {
         width: 352px;
         height: auto;
         overflow: hidden !important;
-
-
       }
     }
   }
@@ -530,6 +528,10 @@ div.contact-row:active {
 
 
 @media (max-width: 1100px) {
+    .primary-contact-container {
+    height: 0px !important;
+  }
+
   .detail-panel {
     .heading {
       display: none !important;
