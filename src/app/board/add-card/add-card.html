@@ -34,10 +34,19 @@
         <div class="divider-vert"></div>
 
         <div class="col right-col">
-          <div class="priority">
+          <div class="field-priority">
             <label class="label">Priority</label>
-            <!-- TODO: dev logic -->
-            <!-- <app-priority-selector [(value)]="form.priority"></app-priority-selector> -->
+            <div class="priority-buttons">
+              <button class="priority-btn priority-btn--urgent">
+                <span>urgent</span>
+              </button>
+              <button class="priority-btn [selected]='true' priority-btn--medium">
+                <span>Medium</span>
+              </button>
+              <button class="priority-btn priority-btn--low">
+                <span>Low</span>
+              </button>
+            </div>
           </div>
 
           <div class="field">

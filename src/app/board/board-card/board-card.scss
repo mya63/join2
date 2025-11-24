@@ -146,9 +146,9 @@
       }
     }
 
-    &.prio-high {
+    &.prio-urgent {
       &::after {
-        background: url('../../../../public/assets/img/board/board-card/prio-high.svg')
+        background: url('../../../../public/assets/img/board/board-card/prio-urgent.svg')
           no-repeat center;
       }
     }

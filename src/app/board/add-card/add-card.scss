@@ -47,7 +47,7 @@
 
             .divider-vert {
                 border: 1px solid #D1D1D1;
-                margin-inline: 50px;
+                margin-inline: 4%;
             }
 
             .right-col {
@@ -56,10 +56,38 @@
                 flex-direction: column;
                 gap: 24px;
 
-                .priority {
+                .field-priority {
                     width: 100%;
                     height: 88px;
                     gap: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: space-between;
+
+                    .priority-buttons {
+                        width: 100%;
+                        height: 56px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: space-between;
+                        gap: 8px;
+
+                        .priority-btn {
+                            max-width: 136px;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 10px;
+                        }
+
+
+
+                        .not-selected {
+                            background-color: #F3F4F6;
+                            color: #6B7280;
+                        }
+                    }
                 }
             }
         }
@@ -73,7 +101,9 @@
     gap: 8px;
 }
 
-
+                        .selected {
+                            background-color: #0284C7;
+                        }
 
 
 

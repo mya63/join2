@@ -21,7 +21,7 @@ export class Board implements OnInit, OnDestroy {
   task: ITask = {} as ITask;
   currentTask: ITask = {} as ITask;
   defaultPriority: string = 'low';
-  priorityOptions: string[] = ['low', 'medium', 'high'];
+  priorityOptions: string[] = ['low', 'medium', 'urgent'];
   columnIndex: number = 0;
   collumns: string[] = ['getTaskCollumnOne', 'getTaskCollumnTwo', 'getTaskCollumnThree', 'getTaskCollumnFour'];
 

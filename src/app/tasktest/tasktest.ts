@@ -21,7 +21,7 @@ export class Tasktest {
   task: ITask = {} as ITask;
   currentTask: ITask = {} as ITask;
   defaultPriority: string = 'low';
-  priorityOptions: string[] = ['low', 'medium', 'high'];
+  priorityOptions: string[] = ['low', 'medium', 'urgent'];
   statusOptions: string[] = ['to-do', 'in-progress', 'await-feedback', 'done'];
   categoryOptions: { category: number, categoryProperties: { name: string; color: string }[] } =
     {
