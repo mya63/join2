@@ -39,21 +39,21 @@
             <div class="field-priority">
               <label class="label">Priority</label>
               <div class="priority-buttons">
-                <button class="priority-btn urgent" [class.selected]='whichPriority("urgent")'
+                <button type="button" class="priority-btn urgent" [class.selected]='whichPriority("urgent")'
                   (click)="setPriority('urgent')">
                   <span>Urgent</span>
                   <img [class.dNone]='whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent.svg" alt="">
                   <img [class.dNone]='!whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent-white.svg"
                     alt="">
                 </button>
-                <button class="priority-btn medium" [class.selected]='whichPriority("medium")'
+                <button type="button" class="priority-btn medium" [class.selected]='whichPriority("medium")'
                   (click)="setPriority('medium')">
                   <span>Medium</span>
                   <img [class.dNone]='whichPriority("medium")' src="assets/img/board/board-card/prio-medium.svg" alt="">
                   <img [class.dNone]='!whichPriority("medium")' src="assets/img/board/board-card/prio-medium-white.svg"
                     alt="">
                 </button>
-                <button class="priority-btn low" [class.selected]='whichPriority("low")' (click)="setPriority('low')">
+                <button type="button" class="priority-btn low" [class.selected]='whichPriority("low")' (click)="setPriority('low')">
                   <span>Low</span>
                   <img [class.dNone]='whichPriority("low")' src="assets/img/board/board-card/prio-low.svg" alt="">
                   <img [class.dNone]='!whichPriority("low")' src="assets/img/board/board-card/prio-low-white.svg"
@@ -64,8 +64,7 @@
 
             <div class="field">
               <label class="label">Assigned to</label>
-              <button class="select-assign-to">
-
+              <button type="button" class="select-assign-to">
                 <div class="assign-to-dropdown">
                   <div class="dropdown-header" (click)="toggleAssignDropdown('currentTask')">
                     <span class="selected-users" aria-placeholder="Select contacts to assign">
@@ -102,9 +101,6 @@
                   </div>
                   }
                 </div>
-
-
-
               </button>
             </div>
 
