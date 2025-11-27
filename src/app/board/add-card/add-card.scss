@@ -6,6 +6,14 @@
     gap: 8px;
 }
 
+.dropdown-arrow-icons {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .add-task-page {
     width: 100%;
     height: 100%;
@@ -134,9 +142,10 @@
                         border: 1px solid transparent;
                         z-index: 2000;
 
-                        &:hover {
+                        &:hover,
+                        &:active,
+                        &:focus-within {
                             border: 1px solid #29ABE2;
-                            box-shadow: 0 0 0 3px rgba(41, 171, 226, 0.1);
                         }
 
                         .assign-to-dropdown {
@@ -160,14 +169,10 @@
                                             font-size: 20px;
                                             line-height: 120%;
                                             outline: none;
-                                        }
 
-                                        .dropdown-arrow-icons {
-                                            width: 24px;
-                                            height: 24px;
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;
+                                            &::placeholder {
+                                                color: #D1D1D1;
+                                            }
                                         }
                                     }
                                 }
@@ -195,6 +200,72 @@
                         }
                     }
                 }
+
+                .category {
+                    border-radius: 10px;
+                    cursor: pointer;
+
+                    .category-dropdown {
+                        height: 48px;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        background-color: white;
+                        padding-inline: 8px;
+                        border-top-left-radius: 10px;
+                        border-top-right-radius: 10px;
+
+                        .category-placeholder {
+                            width: 100%;
+                            height: 24px;
+                            border: 0;
+                            font-weight: 400;
+                            font-size: 20px;
+                            line-height: 120%;
+                            color: #D1D1D1;
+                        }
+
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+
+                    .category-container {
+                        position: relative;
+                        width: 100%;
+                        max-height: 200px;
+                        overflow-y: auto;
+                        background-color: white;
+
+
+                        .category-input {
+                            width: 100%;
+                            height: 56px;
+                            border: 0;
+                            background-color: white;
+                            font-weight: 400;
+                            font-size: 20px;
+                            line-height: 120%;
+                            outline: none;
+                            padding: 12px 8px 0px 8px;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+
+
+                        }
+
+
+                    }
+
+                    &:hover,
+                    &:active,
+                    &:focus-within {
+                        border: 1px solid #29ABE2;
+                    }
+
+                }
+
+
             }
         }
     }
@@ -217,10 +288,15 @@
             display: flex;
             align-items: center;
             gap: 16px;
+            font-size: 20px;
+            font-weight: 400;
         }
     }
 }
 
+.dataIsSet {
+    color: #000000!important;
+}
 
 .dNone {
     display: none !important;

@@ -52,6 +52,8 @@ export class AddCard {
   selectedDate: Date | null = null;
   today: Date = new Date();
   showAssignDropdown = { task: false, currentTask: false };
+  showCategoryDropdown = { task: false, currentTask: false };
+  currentCategory: string = 'Select task category';
   subtask: { title: string; completed: boolean } = { title: '', completed: false };
 
   constructor(public fbTaskService: FbTaskService) {
@@ -67,6 +69,7 @@ export class AddCard {
     if (!this.currentTask.assignTo) {
       this.currentTask.assignTo = [];
     }
+
     console.log(this.currentTask, this.columnIndex, this.closeOverlay);
 
     this.fbTaskService.currentTask = this.currentTask
@@ -90,11 +93,30 @@ export class AddCard {
   closeAssignDropdown(event: any) {
     //console.log(event.target.getAttribute('class'));
     if (event.target.getAttribute('class') != null) {
-      if (!['', 'ng', 'fi', 'us','dr'].includes((event.target.getAttribute('class').slice(0, 2)))) {
+      if (!['', 'ng', 'fi', 'us', 'dr'].includes((event.target.getAttribute('class').slice(0, 2)))) {
         this.showAssignDropdown = { task: false, currentTask: false };
       }
     }
   }
+
+  setCategory(categoryName: string): void {
+    this.currentCategory = categoryName;
+      console.log(this.currentCategory);
+    const categoryIndex = this.categoryOptions.categoryProperties.findIndex(category => category.name === categoryName);
+    if (categoryIndex !== -1) {
+      this.task.category.category = categoryIndex;
+      this.task.category.categoryProperties[0].color = this.categoryOptions.categoryProperties[categoryIndex].color;
+      this.task.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[categoryIndex].name;
+      this.showCategoryDropdown.currentTask = false;
+      console.log(this.currentCategory);
+      
+    }
+  }
+
+  dataIsSet() {
+    return (this.currentCategory != 'Select task category');
+  }
+
 
   gettasks() {
     return this.fbTaskService.tasksArray.sort((a, b) => a.positionIndex - b.positionIndex);
@@ -102,9 +124,9 @@ export class AddCard {
 
   addTask(newTask: ITask) {
     (newTask.positionIndex < 0 || newTask.positionIndex > 9999 || typeof newTask.positionIndex !== 'number') ? newTask.positionIndex = 0 : null;
+    newTask.category.category = 0;
     newTask.category.categoryProperties[0].color = this.categoryOptions.categoryProperties[newTask.category.category].color;
     newTask.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[newTask.category.category].name;
-    newTask.category.category = 0;
     newTask.status = this.getStatus(this.selectedColumn());
     newTask.createDate = new Date().toISOString();
     this.fbTaskService.createTask(newTask);
@@ -271,6 +293,11 @@ export class AddCard {
   toggleAssignDropdown(target: 'task' | 'currentTask'): void {
     this.showAssignDropdown[target] = !this.showAssignDropdown[target];
   }
+
+  toggleCategoryDropdown(target: 'task' | 'currentTask'): void {
+    this.showCategoryDropdown[target] = !this.showCategoryDropdown[target];
+  }
+
 
 
 

@@ -68,14 +68,9 @@
               <button type="button" class="select-assign-to">
                 <div class="assign-to-dropdown">
                   <div class="dropdown-header" (click)="toggleAssignDropdown('currentTask')">
-                    <span class="selected-users" aria-placeholder="Select contacts to assign">
+                    <span class="selected-users">
                       <span class="filterAssignedUsers">
-                        @if (currentTask.assignTo && currentTask.assignTo.length > 0) {
-                        @for (user of currentTask.assignTo; track user) {
-                        <!-- {{ user.name }} {{ user.surname }}@if (!$last) {, } -->
-                        }
-                        }
-                        @else { }<input name="subtask" [(ngModel)]="this.filterAssignedUsers"
+                        <input name="assigned-to-input" [(ngModel)]="this.filterAssignedUsers"
                           placeholder="Select contacts to assign" required>
                         <span class="dropdown-arrow-icons">
                           <img [class.dNone]="showAssignDropdown.currentTask"
@@ -85,7 +80,7 @@
                             src="assets/img/board/add-card/assigned-to-arrow-drop-down-close.svg"
                             alt="Assign to list arrow close">
                         </span>
-                        <span class="dropdown-arrow" [class.open]="showAssignDropdown.currentTask"></span></span>
+                      </span>
                     </span>
                   </div>
                   @if (showAssignDropdown.currentTask) {
@@ -93,8 +88,10 @@
                     @for (user of this.getUserForTask(); track user) {
                     <label class="user-checkbox">
                       <span class="user-checkbox-label">
-                        <div class="avatar" [style.background]="user.color"  >{{ user.name.charAt(0) + user.surname.charAt(0) }}</div>
-                      {{ user.name }} {{ user.surname }}</span>
+                        <div class="avatar" [style.background]="user.color">{{ user.name.charAt(0) +
+                          user.surname.charAt(0) }}</div>
+                        {{ user.name }} {{ user.surname }}
+                      </span>
                       <input type="checkbox" [checked]="isUserAssigned(user, currentTask.assignTo)"
                         (change)="toggleUserAssignment(user, currentTask.assignTo)">
 
@@ -113,10 +110,25 @@
 
             <div class="field">
               <label class="label">Category*</label>
-              <button class="select">
-                <span>Select contacts to assign</span>
-                <span class="caret"></span>
-              </button>
+
+              <div class="category">
+                <span class="category-dropdown" (click)="toggleCategoryDropdown('currentTask')">
+                  <span class="category-placeholder" [class.dataIsSet]="this.dataIsSet()">{{ currentCategory }}</span>
+                  <span class="dropdown-arrow-icons">
+                    <img [class.dNone]="showCategoryDropdown.currentTask"
+                      src="assets/img/board/add-card/assigned-to-arrow-drop-down-open.svg"
+                      alt="Assign to list arrow open">
+                    <img [class.dNone]="!showCategoryDropdown.currentTask"
+                      src="assets/img/board/add-card/assigned-to-arrow-drop-down-close.svg"
+                      alt="Assign to list arrow close">
+                  </span>
+                </span>
+                <span class="category-container" [class.dNone]="!showCategoryDropdown.currentTask">
+                  @for (category of this.categoryOptions.categoryProperties; track category) {
+                  <div class="category-input" (click)="setCategory(category.name)">{{ category.name }}</div>
+                  }
+                </span>
+              </div>
             </div>
 
             <div class="field">
