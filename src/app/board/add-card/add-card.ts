@@ -23,6 +23,11 @@ export class AddCard implements OnInit {
     this.closeOverlay.emit();
   }
 
+  create() {
+    this.addTask(this.task);
+    this.onClose();
+  }
+
   injectedFbService = inject(FbService);
   FbService: FbService = this.injectedFbService;
 
@@ -43,6 +48,7 @@ export class AddCard implements OnInit {
         { name: 'Technical Task', color: '#1FD7C1' },
       ]
     };
+  subtask: { title: string; completed: boolean } = { title: '', completed: false };
 
 
   ngOnInit(): void {
@@ -51,6 +57,7 @@ export class AddCard implements OnInit {
     this.task.status = this.getStatus(this.selectedColumn());
     this.task.category.categoryProperties[0].color = this.categoryOptions.categoryProperties[0].color;
     this.task.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[0].name;
+    this.task.subTasks = [];
     console.log(this.task);
   }
 
@@ -62,7 +69,8 @@ export class AddCard implements OnInit {
     this.fbTaskService.createTask(newTask);
     this.task.assignTo = [];
     this.task.priority = 'medium';
-    this.task.category.category = -1; 
+    this.task.category.category = -1;
+    this.task.subTasks = [];
   }
 
   whichPriority(priority: string): boolean {
@@ -146,7 +154,13 @@ export class AddCard implements OnInit {
     }
   }
 
-
+  subtaskEnter(myTask: ITask) {
+    if (!myTask || this.subtask.title.trim() === '') {
+      return;
+    }
+    myTask.subTasks.push({ subtaskTitle: this.subtask.title, subtaskCompleted: false });
+    this.subtask = { title: '', completed: false };
+  }
 
 
 

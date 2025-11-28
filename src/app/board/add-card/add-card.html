@@ -92,8 +92,10 @@
                           user.surname.charAt(0) }}</div>
                         {{ user.name }} {{ user.surname }}
                       </span>
-                      <img [class.dNone]="isUserAssigned(user, task.assignTo)" src="assets/img/board/add-card/cube-check.svg" alt="">
-                      <img [class.dNone]="!isUserAssigned(user, task.assignTo)" src="assets/img/board/add-card/cube-check-checkedIn.svg" alt="">
+                      <img [class.dNone]="isUserAssigned(user, task.assignTo)"
+                        src="assets/img/board/add-card/cube-check.svg" alt="">
+                      <img [class.dNone]="!isUserAssigned(user, task.assignTo)"
+                        src="assets/img/board/add-card/cube-check-checkedIn.svg" alt="">
                       <input class="dNone" type="checkbox" [checked]="isUserAssigned(user, task.assignTo)"
                         (change)="toggleUserAssignment(user, task.assignTo)">
                     </label>
@@ -134,16 +136,28 @@
 
             <div class="field">
               <label class="label">Subtasks</label>
-              <div class="input">
-                <input type="text" placeholder="Add new subtask" />
+              <div class="subtask-input">
+                <span class="out"><input type="text" name="subtask" [(ngModel)]="this.subtask.title"
+                    placeholder="Add new subtask" required>
+                  <span class="subtask-icons">
+                    <p class="icon-close"><img src="assets/img/board/add-card/close.svg" alt="close"
+                        (click)="subtaskEnter(this.task)"></p>
+                    <p class="icon-enter"><img src="assets/img/board/add-card/check.svg" alt="enter"
+                        (click)="subtaskEnter(this.task)"></p>
+                  </span>
+                </span>
               </div>
             </div>
+
+            @for (subtask of task.subTasks; track subtask)
+            {<br> {{$index + 1}}. {{ subtask.subtaskTitle }} (Completed: {{ subtask.subtaskCompleted }})}
+
           </div>
         </div>
       </div>
       <div class="actions">
         <button type="button" (click)="onClose()" class="btn btn--secondary desktop-only">Cancel</button>
-        <button type="submit" (click)="onClose()" class="btn btn--primary">
+        <button type="button" (click)="create()" class="btn btn--primary">
           <span>Create Task</span>
           <i class="check"></i>
         </button>
