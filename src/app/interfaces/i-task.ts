@@ -13,5 +13,5 @@ export interface ITask {
     description: string;
     assignTo: IContact[];
     priority: string | 'low' | 'medium' | 'urgent';
-    subTasks: {subtaskTitle: string; subtaskCompleted: boolean}[];
+    subTasks: {subtaskTitle: string; subtaskCompleted: boolean, onEdit: boolean}[];
 }[]

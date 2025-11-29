@@ -48,7 +48,7 @@ export class AddCard implements OnInit {
         { name: 'Technical Task', color: '#1FD7C1' },
       ]
     };
-  subtask: { title: string; completed: boolean } = { title: '', completed: false };
+  subtask: { title: string; completed: boolean; onEdit: boolean } = { title: '', completed: false, onEdit: false };
 
 
   ngOnInit(): void {
@@ -154,18 +154,27 @@ export class AddCard implements OnInit {
     }
   }
 
-  subtaskEnter(myTask: ITask) {
+  addSubtask(myTask: ITask) {
     if (!myTask || this.subtask.title.trim() === '') {
       return;
     }
-    myTask.subTasks.push({ subtaskTitle: this.subtask.title, subtaskCompleted: false });
-    this.subtask = { title: '', completed: false };
+    myTask.subTasks.push({subtaskTitle: this.subtask.title, subtaskCompleted: false, onEdit: false });
+    this.subtask = { title: '', completed: false, onEdit: false };
   }
 
+  editSubtask(subtaskTitle: string, newTitle: string, myTask: ITask) {
+    const subtask = myTask.subTasks.find(st => st.subtaskTitle === subtaskTitle);
 
+    if (subtask) {
+      subtask.subtaskTitle = newTitle;
+      subtask.onEdit = false;
+    }
+  }
 
-
-
+  deleteSubtask(subtaskTitle: string, myTask: ITask) {
+    myTask.subTasks = myTask.subTasks.filter(st => st.subtaskTitle !== subtaskTitle);
+    myTask.subTasks = [...myTask.subTasks];
+  }
 
 
 }

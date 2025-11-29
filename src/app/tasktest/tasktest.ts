@@ -39,7 +39,7 @@ export class Tasktest {
   selectedDate: Date | null = null;
   today: Date = new Date();
   showAssignDropdown = { task: false, currentTask: false };
-  subtask: { title: string; completed: boolean } = { title: '', completed: false };
+  subtask: { title: string; completed: boolean, onEdit: boolean } = { title: '', completed: false, onEdit: false };
 
   constructor(public fbTaskService: FbTaskService) {
 
@@ -95,8 +95,8 @@ export class Tasktest {
     if (!myTask || this.subtask.title.trim() === '') {
       return;
     }
-    myTask.subTasks.push({ subtaskTitle: this.subtask.title, subtaskCompleted: false });
-    this.subtask = { title: '', completed: false };
+    myTask.subTasks.push({ subtaskTitle: this.subtask.title, subtaskCompleted: false, onEdit: false });
+    this.subtask = { title: '', completed: false, onEdit: false};
   }
 
   openCalendar(target: 'task' | 'currentTask') {

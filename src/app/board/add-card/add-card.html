@@ -137,33 +137,55 @@
             <div class="field">
               <label class="label">Subtasks</label>
               <div class="subtask-input">
-                <span class="out"><input type="text" name="subtask" [(ngModel)]="this.subtask.title"
-                    placeholder="Add new subtask" required>
+                <span class="out"><input type="text" name="subtask" (keydown.enter)="addSubtask(this.task)"
+                    [(ngModel)]="this.subtask.title" placeholder="Add new subtask" required>
                   <span class="subtask-icons">
-                    <p class="icon-close"><img src="assets/img/board/add-card/close.svg" alt="close"
-                        (click)="subtaskEnter(this.task)"></p>
-                    <p class="icon-enter"><img src="assets/img/board/add-card/check.svg" alt="enter"
-                        (click)="subtaskEnter(this.task)"></p>
+                    <p class="subtask-icon-left"><img src="assets/img/board/add-card/close.svg" alt="close"
+                        (click)="this.subtask.title=''"></p>
+                    <p class="subtask-icon-right"><img src="assets/img/board/add-card/check.svg" alt="enter"
+                        (click)="addSubtask(this.task)"></p>
                   </span>
                 </span>
               </div>
             </div>
-
-            @for (subtask of task.subTasks; track subtask)
-            {<br> {{$index + 1}}. {{ subtask.subtaskTitle }} (Completed: {{ subtask.subtaskCompleted }})}
+            <div class="subtasks-container">
+              @for (subtask of this.task.subTasks; track subtask) {
+              <div class="subtask-item">
+                <p class="subtask-label-edit" [class.dNone]="!subtask.onEdit">
+                  <input #subtaskInput type="text" name="subtaskEdit"
+                    (keydown.enter)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"
+                    [value]="subtask.subtaskTitle">
+                  <span class="subtask-icons">
+                    <p class="subtask-icon-left"><img src="assets/img/board/add-card/delete.svg" alt="close"
+                        (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
+                    <p class="subtask-icon-right"><img src="assets/img/board/add-card/check.svg" alt="enter"
+                        (click)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
+                  </span>
+                </p>
+                <p class="subtask-label" (click)="subtask.onEdit=true" [class.dNone]="subtask.onEdit">
+                  &bull; {{ subtask.subtaskTitle }}
+                  <span class="subtask-icons">
+                    <p class="subtask-icon-left"><img src="assets/img/board/add-card/edit.svg" alt="close"
+                        (dblclick)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
+                    <p class="subtask-icon-right"><img src="assets/img/board/add-card/delete.svg" alt="enter"
+                        (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
+                  </span>
+                </p>
+              </div>
+              }
+            </div>
 
           </div>
         </div>
       </div>
-      <div class="actions">
-        <button type="button" (click)="onClose()" class="btn btn--secondary desktop-only">Cancel</button>
-        <button type="button" (click)="create()" class="btn btn--primary">
-          <span>Create Task</span>
-          <i class="check"></i>
-        </button>
+      <div class="content-bottom">
+        <i class="check"></i>
+        <div class="button-group">
+          <button type="button" (click)="onClose()" class="btn btn--secondary desktop-only">Cancel</button>
+          <button type="button" (click)="create()" class="btn btn--primary">Create Task</button>
+        </div>
       </div>
     </form>
-
   </main>
 </div>
 
