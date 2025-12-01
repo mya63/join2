@@ -5,30 +5,33 @@
         <h1 class="page-title">Add Task</h1>
         <div class="input-content">
           <div class="col left-col">
-            <div class="field">
-              <label class="label">Title*</label>
+            <div class="field-title">
+              <label class="label">Title<span [style.color]="'red'">*</span></label>
               <div class="input">
-                <input type="text" placeholder="Enter a title" />
+                <input type="text" #title placeholder="Enter a title" name="title" [(ngModel)]="this.task.title" />
+                <div [class.dNone]="alowAddTask()"><span [style.color]="'red'">*This field is required</span>
+                </div>
               </div>
-              <div class="hint hint--error hide-on-empty">*This field is required</div>
             </div>
 
-            <div class="field">
+
+            <div class="field-description">
               <label class="label">Description</label>
               <div class="textarea">
-                <textarea placeholder="Enter a Description"></textarea>
+                <textarea placeholder="Enter a Description" name="description" [(ngModel)]="this.task.description"></textarea>
                 <span class="dots"></span>
               </div>
               <div class="hint hide-on-empty"></div>
             </div>
 
             <div class="field">
-              <label class="label">Due date*</label>
+              <label class="label">Due date<span [style.color]="'red'">*</span></label>
               <div class="input input--with-icon">
                 <input type="text" placeholder="dd/mm/yyyy" />
                 <span class="calendar"></span>
               </div>
-              <div class="hint hint--error hide-on-empty">*This field is required</div>
+              <div class="hint hint--error hide-on-empty"><span [style.color]="'red'">*This field is required</span>
+              </div>
             </div>
           </div>
 
@@ -111,7 +114,7 @@
             </div>
 
             <div class="field-category">
-              <label class="label">Category*</label>
+              <label class="label">Category<span [style.color]="'red'">*</span></label>
 
               <div class="category">
                 <span class="category-dropdown" (click)="toggleCategoryDropdown('currentTask')">
@@ -146,34 +149,34 @@
                   </span>
                 </span>
               </div>
-            
-            <div class="subtasks-container">
-              @for (subtask of this.task.subTasks; track subtask) {
-              <div class="subtask-item">
-                <p class="subtask-label-edit" [class.dNone]="!subtask.onEdit">
-                  <input #subtaskInput type="text" name="subtaskEdit"
-                    (keydown.enter)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"
-                    [value]="subtask.subtaskTitle">
-                  <span class="subtask-icons">
-                    <p class="subtask-icon-left"><img src="assets/img/board/add-card/delete.svg" alt="close"
-                        (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
-                    <p class="subtask-icon-right"><img src="assets/img/board/add-card/check.svg" alt="enter"
-                        (click)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
-                  </span>
-                </p>
-                <p class="subtask-label" (dblclick)="subtask.onEdit=true" [class.dNone]="subtask.onEdit">
-                  &bull; {{ subtask.subtaskTitle }}
-                  <span class="subtask-icons">
-                    <p class="subtask-icon-left"><img src="assets/img/board/add-card/edit.svg" alt="close"
-                        (lclick)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
-                    <p class="subtask-icon-right"><img src="assets/img/board/add-card/delete.svg" alt="enter"
-                        (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
-                  </span>
-                </p>
+
+              <div class="subtasks-container">
+                @for (subtask of this.task.subTasks; track subtask) {
+                <div class="subtask-item">
+                  <p class="subtask-label-edit" [class.dNone]="!subtask.onEdit">
+                    <input #subtaskInput type="text" name="subtaskEdit"
+                      (keydown.enter)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"
+                      [value]="subtask.subtaskTitle">
+                    <span class="subtask-icons">
+                      <p class="subtask-icon-left"><img src="assets/img/board/add-card/delete.svg" alt="close"
+                          (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
+                      <p class="subtask-icon-right"><img src="assets/img/board/add-card/check.svg" alt="enter"
+                          (click)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
+                    </span>
+                  </p>
+                  <p class="subtask-label" (dblclick)="subtask.onEdit=true" [class.dNone]="subtask.onEdit">
+                    &bull; {{ subtask.subtaskTitle }}
+                    <span class="subtask-icons">
+                      <p class="subtask-icon-left"><img src="assets/img/board/add-card/edit.svg" alt="close"
+                          (lclick)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
+                      <p class="subtask-icon-right"><img src="assets/img/board/add-card/delete.svg" alt="enter"
+                          (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
+                    </span>
+                  </p>
+                </div>
+                }
               </div>
-              }
             </div>
-          </div>
           </div>
         </div>
       </div>
@@ -189,69 +192,3 @@
     </form>
   </main>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="add-card-container">
-  <div class="add-card-header">
-    <h2>Neue Aufgabe hinzufügen</h2>
-    <button class="close-btn" (click)="onClose()">×</button>
-  </div>
-  
-  <div class="add-card-content">
-    <p class="selected-column-info">
-      Spalte ausgewählt: <strong>{{ getColumnDisplayName(selectedColumn()) }}</strong>
-    </p>
-    
-    <div class="form-group">
-      <label for="taskTitle">Titel:</label>
-      <input type="text" id="taskTitle" placeholder="Aufgabentitel eingeben..." />
-    </div>
-    
-    <div class="form-group">
-      <label for="taskDescription">Beschreibung:</label>
-      <textarea id="taskDescription" placeholder="Aufgabenbeschreibung eingeben..."></textarea>
-    </div>
-    
-    <div class="form-actions">
-      <button class="btn-cancel" (click)="onClose()">Abbrechen</button>
-      <button class="btn-save">Speichern</button>
-    </div>
-  </div>
-</div>
- -->

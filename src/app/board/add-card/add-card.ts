@@ -55,6 +55,9 @@ export class AddCard implements OnInit {
     this.task = this.fbTaskService.newTask;
     this.currentTask = this.fbTaskService.newTask;
     this.task.status = this.getStatus(this.selectedColumn());
+    this.task.title = '';
+    this.task.description = '';
+    this.task.priority = 'medium';
     this.task.category.categoryProperties[0].color = this.categoryOptions.categoryProperties[0].color;
     this.task.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[0].name;
     this.task.subTasks = [];
@@ -158,7 +161,7 @@ export class AddCard implements OnInit {
     if (!myTask || this.subtask.title.trim() === '') {
       return;
     }
-    myTask.subTasks.push({subtaskTitle: this.subtask.title, subtaskCompleted: false, onEdit: false });
+    myTask.subTasks.push({ subtaskTitle: this.subtask.title, subtaskCompleted: false, onEdit: false });
     this.subtask = { title: '', completed: false, onEdit: false };
   }
 
@@ -174,6 +177,11 @@ export class AddCard implements OnInit {
   deleteSubtask(subtaskTitle: string, myTask: ITask) {
     myTask.subTasks = myTask.subTasks.filter(st => st.subtaskTitle !== subtaskTitle);
     myTask.subTasks = [...myTask.subTasks];
+  }
+
+
+  alowAddTask(): boolean {
+    return this.task.title !== '' && this.task.title.trim() !== '';
   }
 
 
