@@ -1,5 +1,7 @@
 <aside class="figma-sidenav">
-  <!-- 🔹 JOIN-Logo oben -->
+
+  <ng-container *ngIf="!externalLegalMode; else externalLegalTemplate">
+
   <div class="logo">
     <img src="assets/img/shared/sidenav/logo_join.svg" alt="Join Logo" class="logo-img" />
   </div>
@@ -27,9 +29,22 @@
     </a>
   </nav>
 
-  <!-- 🔹 Footer -->
   <div class="legal">
     <a routerLink="/privacy-policy" class="link">Privacy Policy</a>
     <a routerLink="/legal-notice" class="link">Legal notice</a>
   </div>
+</ng-container>
+
+<ng-template #externalLegalTemplate>
+  <div class="logo">
+    <img src="assets/img/shared/sidenav/logo_join.svg" alt="Join Logo" class="logo-img" />
+  </div>
+
+<nav class="menu external">
+  <a routerLink="/login" class="item item-login">
+    <img src="assets/img/shared/sidenav/summary.svg" alt="Login icon" class="icon"/>
+    <span class="label">Login</span>
+  </a>
+</nav>
+</ng-template>
 </aside>
