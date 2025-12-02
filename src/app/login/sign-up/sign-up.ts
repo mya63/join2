@@ -37,27 +37,77 @@ export class SignUp {
     }
   }
 
-  private validateEmpty(): void {
-    if (!this.signUpData.name) this.signUpErrors.name = 'Please enter your name.';
-    if (!this.signUpData.surname) this.signUpErrors.surname = 'Please enter your surname.';
-    if (!this.signUpData.email) this.signUpErrors.email = 'Please enter your email.';
-    if (!this.signUpData.password) this.signUpErrors.password = 'Please enter your password.';
-    if (!this.signUpData.confirmPassword) {
-      this.signUpErrors.confirmPassword = 'Please confirm your password.';
+  private validateName(): void {
+    const name = this.signUpData.name.trim();
+    this.signUpErrors.name = '';
+    if (!name) {
+      this.signUpErrors.name = 'Please enter your name.';
+      return;
+    }
+    if (name.length < 2) {
+      this.signUpErrors.name = 'Name is too short.';
+      return;
+    }
+    if (!/^[A-ZÄÖÜ][a-zäöüß]+(?: [A-ZÄÖÜ][a-zäöüß]+)*$/.test(name)) {
+      this.signUpErrors.name = 'Please start with a capital letter.';
     }
   }
 
-  private validatePasswordMatch(): void {
-    if (
-      this.signUpData.password &&
-      this.signUpData.confirmPassword &&
-      this.signUpData.password !== this.signUpData.confirmPassword
-    ) {
-      this.signUpErrors.confirmPassword = 'Your passwords do not match. Please try again.';
+  private validateSurname(): void {
+    const surname = this.signUpData.surname.trim();
+    this.signUpErrors.surname = '';
+    if (!surname) {
+      this.signUpErrors.surname = 'Please enter your surname.';
+      return;
+    }
+    if (surname.length < 2) {
+      this.signUpErrors.surname = 'Surname is too short.';
+      return;
+    }
+    if (!/^[A-ZÄÖÜ][a-zäöüß]+(?: [A-ZÄÖÜ][a-zäöüß]+)*$/.test(surname)) {
+      this.signUpErrors.surname = 'Please start with a capital letter.';
+    }
+  }
+
+  private validateEmail(): void {
+    const email = this.signUpData.email.trim();
+    this.signUpErrors.email = '';
+    if (!email) {
+      this.signUpErrors.email = 'Please enter your email.';
+      return;
+    }
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!pattern.test(email)) {
+      this.signUpErrors.email = 'Please enter a valid email address.';
+    }
+  }
+
+  private validatePassword(): void {
+    const password = this.signUpData.password;
+    this.signUpErrors.password = '';
+    if (!password) {
+      this.signUpErrors.password = 'Please enter your password.';
+      return;
+    }
+    if (password.length < 6) {
+      this.signUpErrors.password = 'Password must be at least 6 characters.';
+    }
+  }
+
+  private validateConfirmPassword(): void {
+    const confirm = this.signUpData.confirmPassword;
+    this.signUpErrors.confirmPassword = '';
+    if (!confirm) {
+      this.signUpErrors.confirmPassword = 'Please confirm your password.';
+      return;
+    }
+    if (confirm !== this.signUpData.password) {
+      this.signUpErrors.confirmPassword = 'Your passwords do not match.';
     }
   }
 
   private validatePrivacy(): void {
+    this.signUpErrors.privacy = '';
     if (!this.signUpData.acceptPrivacy) {
       this.signUpErrors.privacy = 'Please accept the Privacy Policy.';
     }
@@ -74,14 +124,15 @@ export class SignUp {
 
   onSubmit(): void {
     this.resetErrors();
-    this.validateEmpty();
-    this.validatePasswordMatch();
+    this.validateName();
+    this.validateSurname();
+    this.validateEmail();
+    this.validatePassword();
+    this.validateConfirmPassword();
     this.validatePrivacy();
-
     if (this.hasErrors()) {
       return;
     }
-
     this.router.navigate(['/login']);
   }
 
