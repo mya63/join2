@@ -25,7 +25,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'Contacts', pathMatch: 'full' },
       { path: 'summary', redirectTo: 'contacts', pathMatch: 'full' },
       { path: 'contacts', component: Contacts },
-      { path: 'board', component: crud },
+      { path: 'board', component: Board },
       { path: 'crud', component: crud },
 
       { path: 'legal-notice', component: LegalNotice },
