@@ -26,9 +26,9 @@
             </div>
 
 
-            <div class="field-date"><span>Due date<span [style.color]="'red'">*</span></span><span class="out-date"><input class="in"
-                  name="dueDate" [(ngModel)]="task.dueDate" placeholder="dd/mm/yyyy" required> <img
-                  src="assets/img/board/calendar.svg" alt="Calendar" (click)="openCalendar('task')"
+            <div class="field-date"><span>Due date<span [style.color]="'red'">*</span></span><span
+                class="out-date"><input class="in" name="dueDate" [(ngModel)]="task.dueDate" placeholder="dd/mm/yyyy"
+                  required> <img src="assets/img/board/calendar.svg" alt="Calendar" (click)="openCalendar('task')"
                   class="calendar-icon"></span>
 
               <span [class.dNone]="alowAddTaskCalender()"><span [style.color]="'red'">*Date must be today or later
@@ -218,11 +218,17 @@
       </div>
 
       <div class="content-bottom">
-        <div><i class="check"></i></div>
+        <div class="check"><span [style.color]="'red'">*</span>This field is required</div>
         <div class="button-group">
-          <button type="button" (click)="onClose()" class="button-cancel">Cancel</button>
-          <button type="button" (click)="create()" class="button-create">Create Task</button>
-
+          <button type="button" (click)="onClose()" class="button-cancel">Cancel
+            <div class="input-icon">
+              <img class="hoverOff" src="assets/img/board/add-card/x-vector-icon-only.svg" alt="cancel icon">
+              <img class="hoverOn" src="assets/img/board/add-card/x-vector-blue-icon-only.svg" alt="cancel icon">
+            </div>
+          </button>
+          <button type="button" (click)="create()" class="button-create">Create Task
+            <img src="assets/img/board/add-card/check-icon-only.svg" alt="create task icon">
+          </button>
         </div>
       </div>
     </form>
